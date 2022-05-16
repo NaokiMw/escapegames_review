@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_093919) do
+ActiveRecord::Schema.define(version: 2022_05_16_152811) do
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.float "review_1"
+    t.float "review_2"
+    t.float "review_3"
+    t.float "review_4"
+    t.float "review_5"
+    t.string "place"
+    t.date "play_day"
+    t.time "start_time"
+    t.boolean "result"
+    t.string "image"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
