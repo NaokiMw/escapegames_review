@@ -15,35 +15,55 @@
     </tr>
 
     <tr>
-      <div class="form-group row" id="star">
-        <th><%= f.label :review_2,'ストーリー', class:'col-md-3 col-form-label' %><th>
-        <td><%= f.hidden_field :review_2, id: :review_star %></td>
-      </div>
+      <th>タイプ</th><td></td>
+      <th><%= f.label :review_2 ,"ルーム" %></th>
+      <td><%= f.radio_button :review_2, "ルーム", checked: true %></td>
+      <th><%= f.label :review_2 ,"卓上" %></th>
+      <td><%= f.radio_button :review_2, "卓上" %></td>
+      <th><%= f.label :review_2 ,"街歩き" %></th>
+      <td><%= f.radio_button :review_2, "街歩き" %></td>
+      <th><%= f.label :review_2 ,"本・グッズ" %></th>
+      <td><%= f.radio_button :review_2, "本・グッズ" %></td>
     </tr>
 
     <tr>
-      <div class="form-group row" id="star">
-        <th><%= f.label :review_3,'満足度', class:'col-md-3 col-form-label' %><th>
-        <td><%= f.hidden_field :review_3, id: :review_star %></td>
-      </div>
+      <th>ストーリー</th><td></td>
+      <th><%= f.label :review_3 ,"学生向き" %></th>
+      <td><%= f.radio_button :review_3, "学生向き", checked: true %></td>
+      <th><%= f.label :review_3 ,"ファミリー向き" %></th>
+      <td><%= f.radio_button :review_3, "ファミリー向き" %></td>
+      <th><%= f.label :review_3 ,"大人向き" %></th>
+      <td><%= f.radio_button :review_3, "大人向き" %></td>
+      <th><%= f.label :review_3 ,"マニア向き" %></th>
+      <td><%= f.radio_button :review_3, "マニア向き" %></td>
     </tr>
 
     <tr>
-      <div class="form-group row" id="star">
-        <th><%= f.label :review_4,'ひらめき力', class:'col-md-3 col-form-label' %><th>
-        <td><%= f.hidden_field :review_4, id: :review_star %></td>
-      </div>
+      <th>満足度</th><td></td>
+      <th><%= f.label :review_4 ,"ひくい" %></th>
+      <td><%= f.radio_button :review_4, "ひくい", checked: true %></td>
+      <th><%= f.label :review_4 ,"ふつう" %></th>
+      <td><%= f.radio_button :review_4, "ふつう" %></td>
+      <th><%= f.label :review_4 ,"たかい" %></th>
+      <td><%= f.radio_button :review_4, "たかい" %></td>
+      <th><%= f.label :review_4 ,"最高" %></th>
+      <td><%= f.radio_button :review_4, "最高" %></td>
     </tr>
 
     <tr>
-      <div class="form-group row" id="star">
-        <th><%= f.label :review_5,'ひらめき力', class:'col-md-3 col-form-label' %><th>
-        <td><%= f.hidden_field :review_5, id: :review_star %></td>
-      </div>
+      <th>むずかしさ</th><td></td>
+      <th><%= f.label :review_5 ,"かんたん" %></th>
+      <td><%= f.radio_button :review_5, "かんたん", checked: true %></td>
+      <th><%= f.label :review_5 ,"ふつう" %></th>
+      <td><%= f.radio_button :review_5, "ふつう" %></td>
+      <th><%= f.label :review_5 ,"むずかしい" %></th>
+      <td><%= f.radio_button :review_5, "むずかしい" %></td>
+      <th><%= f.label :review_5 ,"激ムズ" %></th>
+      <td><%= f.radio_button :review_5, "激ムズ" %></td>
     </tr>
 
     <tr>
-      <th><%= f.label :place ,"place" %></th>
+      <th><%= f.label :place ,"場所" %></th>
       <td><%= f.text_field :place %></td>
     </tr>
 
@@ -54,23 +74,33 @@
 
     <tr>
       <th><%= f.label :start_time ,"開始時間" %></th>
-      <td><%= f.date_field :start_time %></td>
+      <td><%= f.time_field :start_time %></td>
     </tr>
 
     <tr>
+      <th>脱出</th><td></td>
       <th><%= f.label :result ,"成功" %></th>
-      <td><%= f.radio_button :result, true %></td>
+      <td><%= f.radio_button :result, true, checked: true %></td>
       <th><%= f.label :result ,"失敗" %></th>
       <td><%= f.radio_button :result, false %></td>
     </tr>
-
-
   </table>
-  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: 1 %>
   <div>
     <ul>
       <li><%= f.submit "登録完了する"%></li>
       <li><%= link_to "イベント情報一覧に戻る", :users %></li>
     </ul>
   </div>
+  <!-- 評価javascript -->
+  <script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'review[review_1]',
+    half: true,
+  });
+  </script>  
 <% end %>

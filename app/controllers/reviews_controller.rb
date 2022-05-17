@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @user = current_user.id
+    
     @review = Review.new
   end
 
@@ -23,5 +23,4 @@ class ReviewsController < ApplicationController
 
   def destroy
   end
-end
 end

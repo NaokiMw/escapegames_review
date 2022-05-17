@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_152811) do
+ActiveRecord::Schema.define(version: 2022_05_17_053408) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.float "review_1"
-    t.float "review_2"
-    t.float "review_3"
-    t.float "review_4"
-    t.float "review_5"
+    t.string "review_2"
+    t.string "review_3"
+    t.string "review_4"
+    t.string "review_5"
     t.string "place"
     t.date "play_day"
     t.time "start_time"
