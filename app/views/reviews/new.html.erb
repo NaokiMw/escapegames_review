@@ -84,6 +84,10 @@
       <th><%= f.label :result ,"失敗" %></th>
       <td><%= f.radio_button :result, false %></td>
     </tr>
+
+    <tr>
+    <th><%= f.label :image ,"記念写真" %></th>
+    <td><%= f.file_field :image %></td>
   </table>
   <%= f.hidden_field :user_id, value: 1 %>
   <div>
