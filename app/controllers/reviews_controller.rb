@@ -4,18 +4,17 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @user = current_user.id
     @review = Review.new
   end
 
   def create
     @review = Review.new(review_params)
-
+    @review.user_id = current_user.id
     if @review.save
       flash[:notice] = "レビューを新規作成しました"
       redirect_to :reviews
     else
-      rendaer"new"
+      render"new"
     end
   end
 
