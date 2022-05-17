@@ -86,8 +86,10 @@
     </tr>
 
     <tr>
-    <th><%= f.label :image ,"記念写真" %></th>
-    <td><%= f.file_field :image %></td>
+      <th><%= f.label :image ,"記念写真" %></th>
+      <td><%= f.file_field :image %></td>
+    </tr>
+
   </table>
   <%= f.hidden_field :user_id, value: 1 %>
   <div>
