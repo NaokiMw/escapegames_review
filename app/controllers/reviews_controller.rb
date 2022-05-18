@@ -30,6 +30,10 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @review = Review.find_by(params[:id],user_id: current_user.id)
+    @review.destroy
+    flash[:notice] = "レビューを削除しました"
+    redirect_to :reviews
   end
 
   private
