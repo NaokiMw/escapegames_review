@@ -19,8 +19,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @user = current_user.id
-    @review = Review.where(user_id: @user)
+    @review = Review.find(params[:id])
+    @user = @review.user
   end
 
   def edit

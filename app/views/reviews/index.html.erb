@@ -16,12 +16,11 @@
       <th>結果</th>
       <th>記念写真</th>
       <th>登録日</th>
-      <th>削除</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @review.each do |review| %>
+    <% @reviews.each do |review| %>
       <tr>
         <td><%= review.user.username %></td>
         <td><%= review.title %></td>
@@ -53,10 +52,19 @@
           <%= image_tag review.image.variant(resize_to_fill: [150, 150]).processed, class: 'review-image' %>    
         </td>
         <td><%= l review.created_at, format: :default %></td>
-        <td><%= link_to "レビューの削除", review, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<% @reviews.each do |review| %>
+  <% if user_signed_in? %>
+    <% if review.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+      <p><i class="fa fa-heart unlike-btn"></i><%=link_to review.favorites.count, review_favorites_path(review.id), method: :delete %></p>
+    <% else %>
+      <p><i class="fa fa-heart like-btn red"></i><%=link_to review.favorites.count, review_favorites_path(review.id), method: :post %></p>
+    <% end %>
+  <% else %>
+    <p><span>お気に入り数: </span><%= review.favorites.count %></p>
+  <% end %>
+<% end %>
 <p><%= link_to "イベント新規登録", new_review_path %></p>
