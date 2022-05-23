@@ -66,5 +66,13 @@
   <% else %>
     <p><i class="fa fa-heart like-btn"><%= review.favorites.count %></p>
   <% end %>
+
+  <% if current_user != review.user %>
+    <% if review.user.followed_by?(current_user) %>
+      <p><%=link_to "フォロー済み", user_relationships_path(review.user.id), method: :delete %></p>
+    <% else %>
+      <p><%=link_to "フォローする", user_relationships_path(review.user.id), method: :post %></p>
+    <% end %>
+  <% end %>
 <% end %>
 <p><%= link_to "イベント新規登録", new_review_path %></p>
