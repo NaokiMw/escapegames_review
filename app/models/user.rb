@@ -8,4 +8,5 @@ class User < ApplicationRecord
   validates :profile, length: { maximum: 200 } 
   has_many :reviews
   has_many :favorites
+  has_many :favorite_reviews, through: :favorites, source: :review
 end
