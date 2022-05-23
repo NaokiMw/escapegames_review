@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :username, presence: true 
   validates :profile, length: { maximum: 200 } 
   has_many :reviews
+  has_many :diarys
   has_many :favorites
   has_many :favorite_reviews, through: :favorites, source: :review
   # フォローする側のuser関連

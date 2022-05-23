@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'diarys/index'
   get 'relationships/create'
   get 'relationships/destroy'
   get 'users/show'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   resources :reviews do
     resource :favorites, only: [:create, :destroy]
   end
+  resources :diarys
   resources :users, only: [:show] do
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
