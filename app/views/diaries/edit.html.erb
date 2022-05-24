@@ -1,4 +1,4 @@
-<h3>日記新規作成</h3>
+<h3>日記更新</h3>
  
 <%= form_with model: @diary do |f| %>
   <table>
@@ -32,12 +32,12 @@
 
     <tr>
       <th><%= f.label :status ,"状態" %></th>
-      <td><%= f.select :status, [["非公開", "draft"],["公開", "published"]], { class:'item-open' } %></td>
+      <td><%= f.select :status, Diary.statuses.keys.to_a, {}, { class:'item-open' } %></td>
     </tr>
   </table>
   <div>
     <ul>
-      <li><%= f.submit "登録完了する"%></li>
+      <li><%= f.submit "編集完了"%></li>
       <li><%= link_to "日記の一覧に戻る", :diaries %></li>
     </ul>
   </div>

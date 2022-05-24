@@ -20,7 +20,6 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.where(id: params[:id])
-    
   end
 
   def edit

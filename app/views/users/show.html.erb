@@ -11,13 +11,12 @@
         <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
     <% end %>
 <% end %>
-
+<% @diary.each do |diary| %>
+  <p><span>自分の日記: </span><%=link_to diary.title, diary_path(diary.id) %></p>
+<% end %>
 <% @reviews.each do |review| %>
-    <hr>
-    <p><span>自分のレビュー: </span><%=link_to review.title, review_path(review.id) %></p>
-  <% end %>
-  <!-- 追加 -->
-  <% @favorite_reviews.each do |review| %>
-    <hr>
-    <p><span>お気に入りのレビュー: </span><%=link_to review.title, review_path(review.id) %></p>
-  <% end %>
+  <p><span>自分のレビュー: </span><%=link_to review.title, review_path(review.id) %></p>
+<% end %>
+<% @favorite_reviews.each do |review| %>
+  <p><span>お気に入りのレビュー: </span><%=link_to review.title, review_path(review.id) %></p>
+<% end %>

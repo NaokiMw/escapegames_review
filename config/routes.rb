@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'diaries/index'
   get 'relationships/create'
   get 'relationships/destroy'
   get 'users/show'

@@ -1,0 +1,27 @@
+<% @diary.each do |diary| %>
+  <h3>日記</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>投稿日</th>
+        <th>タイトル</th>
+        <th>実施日</th>
+        <th>開始時間</th>
+        <th>結果</th>
+        <th>内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= l diary.created_at %></td>
+        <td><%= diary.title %></td>
+        <td><%= l diary.play_day, format: :short %></td>
+        <td><%= l diary.start_time, format: :short %></td>
+        <td><%= diary.result ? '成功' : '失敗' %></td>
+        <td><%= diary.description %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to "編集", [:edit, diary] %>
+  <%= link_to "削除", diary, method: :delete, data: { confirm: "本当に削除しますか？" }  %>
+<% end %>
