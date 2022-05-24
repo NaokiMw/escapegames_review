@@ -1,7 +1,8 @@
-class DiarysController < ApplicationController
+class DiariesController < ApplicationController
   def index
-    @diarys = Diary.all
+    @diaries = Diary.all
   end
+
   def new
     @diary = Diary.new
   end
@@ -11,12 +12,12 @@ class DiarysController < ApplicationController
     @diary.user_id = current_user.id
     if @diary.save
       flash[:notice] = "日記を新規作成しました"
-      redirect_to :diarys
+      redirect_to :diaries
     else
       render"new"
     end
   end
-
+  
   def show
   end
 
@@ -30,7 +31,7 @@ class DiarysController < ApplicationController
   end
 
   private
-  def review_params
-    params.require(:diary).permit(:title, :play_day, :start_time, :result, :discription, :status, :user_id)
+  def diary_params
+    params.require(:diary).permit(:title, :play_day, :start_time, :result, :description, :status, :user_id)
   end
 end
