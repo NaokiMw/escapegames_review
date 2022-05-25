@@ -63,11 +63,6 @@
     <% else %>
       <p><i class="bi bi-arrow-through-heart-fill"></i><%= button_to(review.favorites.count, review_favorites_path(review.id), {method: "post"}) %></p>
     <% end %>
-  <% else %>
-    <p><i class="fa fa-heart like-btn"><%= review.favorites.count %></p>
-  <% end %>
-
-  <% if current_user != review.user %>
     <% if review.user.followed_by?(current_user) %>
       <p><%=button_to "フォロー済み", user_relationships_path(review.user.id), method: :delete %></p>
     <% else %>
