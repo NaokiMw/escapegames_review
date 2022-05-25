@@ -21,7 +21,8 @@
 
         <div class="text-end">
           <% if user_signed_in? %>
-            <button type="button" class="btn btn-outline-light me-2">ログアウト</button>
+          <%= link_to "ログアウト", destroy_user_session_path(current_user), method: :delete, class: 'btn btn-outline-light me-2' %>
+            <a href="/users/sign_out(current_user)" class="btn btn-outline-light me-2" roll="button">ログアウト</a>
           <% else %>
             <button type="button" class="btn btn-outline-light me-2">ログイン</button>
             <button type="button" class="btn btn-warning">新規登録</button>
