@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "search" => "searches#search"
   get '/mypage' => 'users#mypage'
   get 'users/show'
   root 'reviews#index'
