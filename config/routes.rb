@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'relationships/create'
-  get 'relationships/destroy'
+  get '/mypage' => 'users#mypage'
   get 'users/show'
   root 'reviews#index'
   devise_for :users, controllers: {
