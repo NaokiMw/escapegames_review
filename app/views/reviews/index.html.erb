@@ -20,16 +20,21 @@
           <h3>STARTTIME</h3>
           <h4><%= l review.start_time, format: :short %><h3>
         </p>
+      
         <% if user_signed_in? %>
-          <% if review.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-            <p><%= button_to "いいね", review_favorites_path(review.id), class: "btn btn-warning", method: :delete %></p>
+          <% if current_user.id == review.user_id %>
+            <%= link_to "レビューの削除", review, method: :delete, class:"btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
           <% else %>
-            <p><%= button_to "いいね", review_favorites_path(review.id), class: "btn btn-light", method: :post %></p>
-          <% end %>
-          <% if review.user.followed_by?(current_user) %>
-            <p><%=button_to "フォロー済み", user_relationships_path(review.user.id), method: :delete %></p>
-          <% else %>
-            <p><%=button_to "フォローする", user_relationships_path(review.user.id), method: :post %></p>
+            <% if review.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+              <p><%= button_to "興味なし", review_favorites_path(review.id), class: "btn btn-warning", method: :delete %></p>
+            <% else %>
+              <p><%= button_to "興味あり", review_favorites_path(review.id), class: "btn btn-light", method: :post %></p>
+            <% end %>
+            <% if review.user.followed_by?(current_user) %>
+              <p><%=button_to "フォロー済み", user_relationships_path(review.user.id), method: :delete, class: "btn btn-secondary" %></p>
+            <% else %>
+              <p><%=button_to "フォローする", user_relationships_path(review.user.id), method: :post, class: "btn btn-secondary" %></p>
+            <% end %>
           <% end %>
         <% end %>
       </div> 
