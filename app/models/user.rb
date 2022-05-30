@@ -6,9 +6,9 @@ class User < ApplicationRecord
   
   validates :username, presence: true 
   validates :profile, length: { maximum: 200 } 
-  has_many :reviews
-  has_many :diaries
-  has_many :favorites
+  has_many :reviews, dependent: :destroy
+  has_many :diaries, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :favorite_reviews, through: :favorites, source: :review
   # フォローする側のuser関連
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
