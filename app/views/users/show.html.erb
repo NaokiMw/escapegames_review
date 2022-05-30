@@ -30,13 +30,13 @@
       <% if @user.profile %>
         <h4><%= @user.profile %></h4>
       <% else %>
-        <h4>pushを押して、プロフィールを作成してみましょう!</h4>
+        <h4>プロフィールを作成してみましょう!</h4>
       <% end %>
     </div>
   </div>
   <div class="row mt-2">
     <div class="col-12">
-      <strong class="text-decoration-underline h3">あなたのレビュー数 <%= @user.reviews.count %></strong>
+      <strong class="text-decoration-underline h3">あなたのレビュー(最新<%= @user.reviews.count %>件)</strong>
       <% @reviews.each do |review| %>
         <div class="col-12 mt-1">
           <%= l review.created_at, format: :default %>
