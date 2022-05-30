@@ -3,8 +3,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
-    @diary = @user.diaries
+    @diary = @user.diaries.limit(5)
     @favorite_reviews = @user.favorite_reviews
+    followings = current_user.followings
+    @follow_reviews = Review.where(user: followings).order(:created_time).limit(10)
   end
   def mypage
     redirect_to user_path(current_user)
