@@ -1,6 +1,9 @@
 class DiariesController < ApplicationController
   def index
-    @diaries = Diary.published.order(created_at: :desc)
+    @published_diaries = Diary.published.order(created_at: :desc)
+    @draft_diaries = Diary.draft.order(created_at: :desc)
+    followings = current_user.followings
+    @follow_diaries = Diary.published.where(user: followings).order(:created_time).limit(10)
   end
 
   def new
