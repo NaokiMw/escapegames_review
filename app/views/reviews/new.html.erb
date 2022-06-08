@@ -1,124 +1,134 @@
 <%= form_with model: @review do |f| %>
-  <div class="container-lg">
-    <%= link_to "レビューの一覧へ", :reviews, class: "btn btn-light" %>
-    <h4>レビュー新規作成</h4>
-    <form class="form-horizontal">
-      <div class="form-group w-75">
-        <%= f.label :title, "タイトル", class: "form-label col-xs-2" %>
-        <div class="col-xs-5">
+  <div class="container border border-5 border-warning rounded mx-md-5 mb-3 mt-2">
+    <div class="row"> 
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-decoration-underline mt-3">レビュー新規作成</h2>
+      </div>
+    </div>
+    <form class="form-horizontal border">
+      <div class="row"> 
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <%= f.label :title, "タイトル", class: "form-label" %>
           <%= f.text_field :title, class: "form-control", placeholder: "プレイしたタイトルを入力して下さい" %>
         </div>
       </div>
 
-      <div class="form-group w-75">
-        <%= f.label :place ,"場所", class: "form-label col-xs-2" %>
-        <%= f.text_field :place, class: "form-control", placeholder: "プレイした場所を入力して下さい" %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <%= f.label :place ,"場所", class: "form-label" %>
+          <%= f.text_field :place, class: "form-control", placeholder: "プレイした場所を入力して下さい" %>
+        </div>
       </div>
 
       <div class="row">
-        <div class="form-group col-2">
-          <%= f.label :play_day ,"遊んだ日", class: "form-label col-xs-2" %>
+        <div class="form-group offset-md-3 col-md-2 mt-2">
+          <%= f.label :play_day ,"遊んだ日", class: "form-label" %>
           <%= f.date_field :play_day, class: "form-control" %>
         </div>
-        <div class="form-group col-2">
+        <div class="form-group col-md-2 mt-2">
           <%= f.label :start_time ,"開始時間", class: "form-label col-xs-2" %>
           <%= f.time_field :start_time, class: "form-control" %>
         </div>
-        <div class="form-group col-4"">
-          <%= f.label :image ,"記念写真", class: "form-label col-xs-2" %>
-          <%= f.file_field :image, class: "form-control" %>      
       </div>
-
-      <div class="form-group" id="star">
-        <%= f.label :review_1, '総合評価', class: "form-label col-xs-2" %>
-        <div class="col-xs-5">
-        <%= f.hidden_field :review_1, class: "form-control", id: :review_1 %>
+      <div class="row">
+        <div class="form-group offset-md-3 col-md-6 mt-2">
+          <%= f.label :image ,"記念写真", class: "form-label" %>
+          <%= f.file_field :image, class: "form-control" %>
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10 mb-2">
+      <div class="row">
+        <div class="form-group offset-md-3 col-md-6 mt-2" id="star">
+          <%= f.label :review_1, '総合評価', class: "form-label" %>
+          <%= f.hidden_field :review_1, class: "form-control", id: :review_1 %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
           <div class="checkbox">
             <div>脱出ゲームのタイプは？</div>
-            <%= f.label :review_2 ,"ルーム", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_2 ,"ルーム", class: "form-check-label" %>
             <%= f.radio_button :review_2, "ルーム", class: "form-check-input", checked: true %>
-            <%= f.label :review_2 ,"卓上", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_2 ,"卓上", class: "form-check-label" %>
             <%= f.radio_button :review_2, "卓上", class: "form-check-input" %>
-            <%= f.label :review_2 ,"街歩き", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_2 ,"街歩き", class: "form-check-label" %>
             <%= f.radio_button :review_2, "街歩き", class: "form-check-input" %>
-            <%= f.label :review_2 ,"本・グッズ", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_2 ,"本・グッズ", class: "form-check-label" %>
             <%= f.radio_button :review_2, "本・グッズ", class: "form-check-input" %>
           </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
           <div class="checkbox">
             <div>ストーリーは？</div>
-            <%= f.label :review_3 ,"学生向き", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_3 ,"学生向き", class: "form-check-label" %>
             <%= f.radio_button :review_3, "学生向き", class: "form-check-input", checked: true %>
-            <%= f.label :review_3 ,"ファミリー向き", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_3 ,"ファミリー向き", class: "form-check-label" %>
             <%= f.radio_button :review_3, "ファミリー向き", class: "form-check-input" %>
-            <%= f.label :review_3 ,"大人向き", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_3 ,"大人向き", class: "form-check-label" %>
             <%= f.radio_button :review_3, "大人向き", class: "form-check-input" %>
-            <%= f.label :review_3 ,"マニア向き", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_3 ,"マニア向き", class: "form-check-label" %>
             <%= f.radio_button :review_3, "マニア向き", class: "form-check-input" %>
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
           <div class="checkbox">
             <div>満足度は？</div>
-            <%= f.label :review_4 ,"ひくい", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_4 ,"ひくい", class: "form-check-label" %>
             <%= f.radio_button :review_4, "ひくい", class: "form-check-input", checked: true %>
-            <%= f.label :review_4 ,"ふつう", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_4 ,"ふつう", class: "form-check-label" %>
             <%= f.radio_button :review_4, "ふつう", class: "form-check-input" %>
-            <%= f.label :review_4 ,"たかい", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_4 ,"たかい", class: "form-check-label" %>
             <%= f.radio_button :review_4, "たかい", class: "form-check-input" %>
-            <%= f.label :review_4 ,"最高", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_4 ,"最高", class: "form-check-label" %>
             <%= f.radio_button :review_4, "最高", class: "form-check-input" %>
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
           <div class="checkbox">
             <div>むずかしさは？</div>
-            <%= f.label :review_5 ,"かんたん", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_5 ,"かんたん", class: "form-check-label" %>
             <%= f.radio_button :review_5, "かんたん", class: "form-check-input", checked: true %>
-            <%= f.label :review_5 ,"ふつう", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_5 ,"ふつう", class: "form-check-label" %>
             <%= f.radio_button :review_5, "ふつう", class: "form-check-input" %>
-            <%= f.label :review_5 ,"むずかしい", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_5 ,"むずかしい", class: "form-check-label" %>
             <%= f.radio_button :review_5, "むずかしい", class: "form-check-input" %>
-            <%= f.label :review_5 ,"激ムズ", class: "form-check-label col-xs-2" %>
+            <%= f.label :review_5 ,"激ムズ", class: "form-check-label" %>
             <%= f.radio_button :review_5, "激ムズ", class: "form-check-input" %>
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <div>脱出は？</div>
-        <%= f.label :result ,"成功", class: "form-check-label col-xs-2" %>
-        <%= f.radio_button :result, true, class: "form-check-input", checked: true %>
-        <%= f.label :result ,"失敗", class: "form-check-label col-xs-2" %>
-        <%= f.radio_button :result, false, class: "form-check-input" %>
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <div>脱出は？</div>
+          <%= f.label :result ,"成功", class: "form-check-label" %>
+          <%= f.radio_button :result, true, class: "form-check-input", checked: true %>
+          <%= f.label :result ,"失敗", class: "form-check-label" %>
+          <%= f.radio_button :result, false, class: "form-check-input" %>
+        </div>
       </div>
 
-        <div class="row">
-          <div class="form-group col-12">
-            <%= f.submit "登録", class: "btn btn-outline-warning" %>
-          </div>
+      <div class="row actions mt-2 mb-2">
+        <div class="col-md-6 offset-md-3">
+          <%= f.submit "登録", class: "btn btn-outline-warning" %>
         </div>
+      </div>
     </form>
   </div>
   <!-- 評価javascript -->
   <script>
     $('#star').raty({
-      size     : 5,
+      size     : 15,
       starOff:  '<%= asset_path('star-off.png') %>',
       starOn : '<%= asset_path('star-on.png') %>',
       starHalf: '<%= asset_path('star-half.png') %>',
