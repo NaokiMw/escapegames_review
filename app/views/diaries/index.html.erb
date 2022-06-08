@@ -1,30 +1,34 @@
 <% if user_signed_in? %>
-  <% @diaries.each do |diary| %>
-    <h3>日記</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>投稿日</th>
-          <th>タイトル</th>
-          <th>実施日</th>
-          <th>開始時間</th>
-          <th>結果</th>
-          <th>内容</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= l diary.created_at %></td>
-          <td><%= diary.title %></td>
-          <td><%= l diary.play_day, format: :short %></td>
-          <td><%= l diary.start_time, format: :short %></td>
-          <td><%= diary.result ? '成功' : '失敗' %></td>
-          <td><%= diary.description %></td>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
+  <div class="d-flex flex-column align-items-stretch bg-white" style="width: 100%;">
+    <%= link_to "新しい日記作成", new_diary_path, class: "btn btn-warning fs-5 fw-semibold mt-2 text-white" %>
+    <a href="/diaries" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-5 fw-semibold">公開中の日記一覧</span>
+    </a>
+    
+    <% @published_diaries.each do |diary| %>
+      <%= render "shared/diaryindex", diary: diary %>
+    <% end %>
+  </div>
+  <div class="d-flex flex-column align-items-stretch bg-white" style="width: 100%;">
+    <a href="/diaries" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-5 fw-semibold">非公開の日記一覧</span>
+    </a>
+    <% @draft_diaries.each do |diary| %>
+      <%= render "shared/diaryindex", diary: diary %>
+    <% end %>
+  </div>
+  <div class="d-flex flex-column align-items-stretch bg-white" style="width: 100%;">
+    <a href="/diaries" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-5 fw-semibold">フォロワーの日記一覧</span>
+    </a>
+    <% @follow_diaries.each do |diary| %>
+      <%= render "shared/diaryindex", diary: diary %>
+    <% end %>
+  </div>
 <% else %>
   <p>日記をご覧頂けません</p>
 <% end %>
-<p><%= link_to "新しい日記作成", new_diary_path %></p>
+

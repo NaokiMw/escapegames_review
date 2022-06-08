@@ -1,73 +1,81 @@
-<h3>レビュー一覧</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>ユーザー名</th>
-      <th>タイトル</th>
-      <th>総合評価</th>
-      <th>タイプ</th>
-      <th>ストーリー</th>
-      <th>満足度</th>
-      <th>むずかしさ</th>
-      <th>場所</th>
-      <th>遊んだ日</th>
-      <th>開始時間</th>
-      <th>結果</th>
-      <th>記念写真</th>
-      <th>登録日</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reviews.each do |review| %>
-      <tr>
-        <td><%= review.user.username %></td>
-        <td><%= review.title %></td>
-        <td>
-          <div id="star-rate<%= review.id%>"></div>    
-            <script>
-            $('#star-rate<%= review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf  : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: 'review[review_1]',
-              });
-            </script>
-        </td>
-        <td><%= review.review_2 %></td>
-        <td><%= review.review_3 %></td>
-        <td><%= review.review_4 %></td>
-        <td><%= review.review_5 %></td>
-        <td><%= review.place %></td>
-        <td><%= l review.play_day, format: :short %></td>
-        <td><%= l review.start_time, format: :short %></td>
-        <td>
-          <%= review.result ? '成功' : '失敗' %>
-        </td>
-        <td>
-          <%= image_tag review.image.variant(resize_to_fill: [150, 150]).processed, class: 'review-image' %>    
-        </td>
-        <td><%= l review.created_at, format: :default %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% @reviews.each do |review| %>
-  <% if user_signed_in? %>
-    <% if review.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-      <p><i class="bi bi-arrow-through-heart"></i><%= button_to(review.favorites.count, review_favorites_path(review.id), {method: "delete"}) %></p>
-    <% else %>
-      <p><i class="bi bi-arrow-through-heart-fill"></i><%= button_to(review.favorites.count, review_favorites_path(review.id), {method: "post"}) %></p>
-    <% end %>
-    <% if review.user.followed_by?(current_user) %>
-      <p><%=button_to "フォロー済み", user_relationships_path(review.user.id), method: :delete %></p>
-    <% else %>
-      <p><%=button_to "フォローする", user_relationships_path(review.user.id), method: :post %></p>
-    <% end %>
+<p><%= link_to "レビューの新規登録", new_review_path, class: "btn btn-light" %></p>
+<div class="card-deck" >
+  <% @search_reviews.each do |review| %>
+    <div class="card text-white bg-secondary mb-3">
+      <div class="card-header">
+        <h6><%= l review.created_at, format: :default %> <%= review.title %> 脱出に<%= review.result ? '成功' : '失敗' %>した<%= review.user.username %>さんのレビュー</h6>
+      </div>
+      <div class="row g-0">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <%= image_tag review.image.variant(resize_to_fill: [250, 200]).processed, class: "card-img-top img-responsive" %>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+        <p class="card-text">
+          <h3>PLACE</h3>
+          <h4><%= review.place %></h5>
+          <h3>PLAYDAY</h3>
+          <h4><%= l review.play_day, format: :short %></h5>
+          <h3>STARTTIME</h3>
+          <h4><%= l review.start_time, format: :short %><h3>
+        </p>
+      
+        <% if user_signed_in? %>
+          <% if current_user.id == review.user_id %>
+            <%= link_to "レビューの削除", review, method: :delete, class:"btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
+          <% else %>
+            <% if review.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+              <p><%= button_to "興味なし", review_favorites_path(review.id), class: "btn btn-warning", method: :delete %></p>
+            <% else %>
+              <p><%= button_to "興味あり", review_favorites_path(review.id), class: "btn btn-light", method: :post %></p>
+            <% end %>
+            <% if review.user.followed_by?(current_user) %>
+              <p><%=button_to "フォロー済み", user_relationships_path(review.user.id), method: :delete, class: "btn btn-secondary" %></p>
+            <% else %>
+              <p><%=button_to "フォローする", user_relationships_path(review.user.id), method: :post, class: "btn btn-secondary" %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div> 
+      <div class="col-md-3">   
+          <div class="card-body">
+            <h4 class="card-title">REVIEW
+                <div id="star-rate<%= review.id %>"></div>    
+                <script>
+                  $('#star-rate<%= review.id %>').raty({
+                    size      : 36,
+                    starOff   : '<%= asset_path('star-off.png') %>',
+                    starOn    : '<%= asset_path('star-on.png') %>',
+                    starHalf  : '<%= asset_path('star-half.png') %>',
+                    half      : true,
+                    readOnly: true,
+                    score: <%= review.review_1 %>,
+                  });
+                </script>
+            </h4>
+            <ol class="list-group">
+              <li class="list-group-item list-group-item-dark ">
+                <div class="fw-bold">1.タイプ</div>
+                <h4 class="text-center"><%= review.review_2 %></h4>
+              </li>
+              <li class="list-group-item list-group-item-dark ">
+                <div class="fw-bold">2.ストーリー</div>
+                <h4 class="text-center"><%= review.review_3 %></h4>
+              </li>
+              <li class="list-group-item list-group-item-dark ">
+                <div class="fw-bold">3.満足度</div>
+                <h4 class="text-center"><%= review.review_4 %></h4>
+              </li>
+              <li class="list-group-item list-group-item-dark ">
+                <div class="fw-bold">4.難しさ</div>
+                <h4 class="text-center"><%= review.review_5 %></h4>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
-<% end %>
-<p><%= link_to "イベント新規登録", new_review_path %></p>
+</div>
+

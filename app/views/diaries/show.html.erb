@@ -1,27 +1,52 @@
-<% @diary.each do |diary| %>
-  <h3>日記</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>投稿日</th>
-        <th>タイトル</th>
-        <th>実施日</th>
-        <th>開始時間</th>
-        <th>結果</th>
-        <th>内容</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= l diary.created_at %></td>
-        <td><%= diary.title %></td>
-        <td><%= l diary.play_day, format: :short %></td>
-        <td><%= l diary.start_time, format: :short %></td>
-        <td><%= diary.result ? '成功' : '失敗' %></td>
-        <td><%= diary.description %></td>
-      </tr>
-    </tbody>
-  </table>
-  <%= link_to "編集", [:edit, diary] %>
-  <%= link_to "削除", diary, method: :delete, data: { confirm: "本当に削除しますか？" }  %>
-<% end %>
+<div class="container-md border border-3 border-warning rounded mx-xl-5 mt-2">
+  <div class="row">
+    <div class="col-sm-1">
+      <%= link_to "Back", :back, class: "btn btn-light mt-2" %>
+    </div>
+    <% @diary.each do |diary| %>
+      <div class="col-sm-2 mt-2">
+        <h3><%= diary.user.username %>さんの日記</h3>
+      </div>
+      <% if current_user.id == diary.user_id %>
+        <div class="col-sm-2 offset-sm-7 mt-2 text-end">
+          <%= link_to "編集", [:edit, diary], class: "btn btn-outline-warning mb-3" %>
+          <%= link_to "削除", diary, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger mb-3"  %>
+        </div>
+      <% end %>
+    <% end %> 
+  </div>
+  <% @diary.each do |diary| %>
+    <div class="row">
+      <div class="col-sm-12">
+        <small class="text-muted h4"><%= l diary.created_at %> 投稿</small>
+      </div>
+      <div class="col-sm-12">
+        <strong class="h1 border-dark border-bottom">
+          <%= diary.title %>
+        </strong>
+      </div>  
+    </div>
+    <div class="row my-2">
+      <div class="col-sm-2 border border-3 border-warning bg-warning rounded-pill w-auto ms-1">
+        <span class="text-white ">遊んだ日 <%= l diary.play_day, format: :short %></span>
+      </div>
+      <div class="col-sm-2 border border-3 border-warning bg-warning rounded-pill w-auto ms-1">
+        <span class="text-white "><%= l diary.start_time, format: :short %>開始</span>
+      </div>
+      <% if diary.result == true %>
+        <div class="col-sm-2 border border-3 border-danger rounded-pill bg-danger w-auto ms-1">
+          <strong class="text-white ">脱出<%= diary.result ? '成功' : '失敗' %></strong>
+        </div>
+      <% else %>
+        <div class="col-sm-2 border border-3 border-primary rounded-pill bg-primary w-auto ms-1">
+          <strong class="text-white ">脱出<%= diary.result ? '成功' : '失敗' %></strong>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 border border-warning">
+        <h4 class="mt-1"><%= diary.description %></h4>
+      </div>
+    </div>
+  <% end %>
+</div>

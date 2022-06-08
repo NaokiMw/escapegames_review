@@ -1,22 +1,75 @@
-<h1>プロフィール画面</h1>
-<p>名前 : <%= @user.username %></p>
-<p>メールアドレス : <%= @user.email %></p>
-<p>プロフィール : <%= @user.profile %></p>
-<p><%=link_to "フォロー", follows_user_path(@user.id) %></p>
-<p><%=link_to "フォロワー", followers_user_path(@user.id) %></p>
-<% if current_user != @user %>
-    <% if @user.followed_by?(current_user) %>
-        <p><%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %></p>
-    <% else %>
-        <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
+<div class="container border border-5 border-warning rounded w-75 mb-3 mt-2">
+  <div class="row">
+    <ul class="col list-group list-group-horizontal justify-content-center">
+      <li class="list-group-item border-0 ">
+        <% @favorite_reviews.each do |review| %>
+          <%=link_to "いいねしたレビュー", review_path(review.id), class: "btn btn-warning rounded-pill text-white" %>
+        <% end %>  
+      </li>
+      <li class="list-group-item border-0">
+        <%= link_to "プロフィール編集", edit_user_registration_path(@user.id),class: "btn btn-warning rounded-pill text-white" %>
+      </li>
+      <li class="list-group-item border-0">
+        <%= link_to "フォロー中" + @user.active_relationships.count.to_s, follows_user_path(@user.id),class: "btn btn-warning rounded-pill text-white" %>
+      </li>
+      <li class="list-group-item border-0">
+        <%= link_to "フォロワー" + @user.passive_relationships.count.to_s, followers_user_path(@user.id), class: "btn btn-warning rounded-pill text-white" %>
+      <li/>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h1><%= @user.username %> さんのマイページ</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-12 ">
+      <strong class="h2 text-decoration-underline ">プロフィール</strong>
+    </div>
+    <div class="col">
+      <% if @user.profile %>
+        <h4><%= @user.profile %></h4>
+      <% else %>
+        <h4>プロフィールを作成してみましょう!</h4>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12">
+      <strong class="text-decoration-underline h3">あなたのレビュー(最新<%= @user.reviews.count %>件)</strong>
+      <% @reviews.each do |review| %>
+        <div class="col-12 mt-1">
+          <%= l review.created_at, format: :default %>
+        </div>
+        <div class="col-12">
+          <p><%=link_to review.title, review_path(review.id), class: "btn btn-secondary rounded text-white" %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class"row">
+    <div class="col-12">
+      <strong class="text-decoration-underline h3">あなたの日記(最新<%= @user.diaries.count %>件)</strong>
+      <% @diary.each do |diary| %>
+        <div class="col-12 mt-1">
+          <%= l diary.created_at, format: :default %>
+        </div>
+        <div class="col-12">
+          <p><%=link_to diary.title, diary_path(diary.id), class: "btn btn-secondary rounded text-white" %></p>
+        <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <strong class="text-decoration-underline h3">フォローしている人のレビュー(最新<%= @follow_reviews.count %>件)</strong>
+    </div>
+    <% @follow_reviews.each do |follow_reviews| %>
+      <div class="col-12 mt-1">
+        <%= l follow_reviews.created_at, format: :default %>
+      </div>
+      <div class="col-12">
+        <p><%=link_to follow_reviews.title, review_path(follow_reviews.id), class: "btn btn-secondary rounded text-white" %></p>
+      </div>
     <% end %>
-<% end %>
-<% @diary.each do |diary| %>
-  <p><span>自分の日記: </span><%=link_to diary.title, diary_path(diary.id) %></p>
-<% end %>
-<% @reviews.each do |review| %>
-  <p><span>自分のレビュー: </span><%=link_to review.title, review_path(review.id) %></p>
-<% end %>
-<% @favorite_reviews.each do |review| %>
-  <p><span>お気に入りのレビュー: </span><%=link_to review.title, review_path(review.id) %></p>
-<% end %>
+  </div>
+</div>

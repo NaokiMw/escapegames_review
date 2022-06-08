@@ -1,44 +1,56 @@
-<h3>日記更新</h3>
- 
-<%= form_with model: @diary do |f| %>
-  <table>
-    <tr>
-      <th><%= f.label :title ,"タイトル" %></th>
-      <td><%= f.text_field :title %></td>
-    </tr>
-
-    <tr>
-      <th><%= f.label :play_day ,"遊んだ日" %></th>
-      <td><%= f.date_field :play_day %></td>
-    </tr>
-
-    <tr>
-      <th><%= f.label :start_time ,"開始時間" %></th>
-      <td><%= f.time_field :start_time %></td>
-    </tr>
-
-    <tr>
-      <th>脱出</th><td></td>
-      <th><%= f.label :result ,"成功" %></th>
-      <td><%= f.radio_button :result, true, checked: true %></td>
-      <th><%= f.label :result ,"失敗" %></th>
-      <td><%= f.radio_button :result, false %></td>
-    </tr>
-
-    <tr>
-      <th><%= f.label :description ,"日記" %></th>
-      <td><%= f.text_area :description %></td>
-    </tr>
-
-    <tr>
-      <th><%= f.label :status ,"状態" %></th>
-      <td><%= f.select :status, Diary.statuses.keys.to_a, {}, { class:'item-open' } %></td>
-    </tr>
-  </table>
-  <div>
-    <ul>
-      <li><%= f.submit "編集完了"%></li>
-      <li><%= link_to "日記の一覧に戻る", :diaries %></li>
-    </ul>
+<div class="container-md border border-3 border-warning rounded mx-xl-5 mt-2">
+  <div class="row">
+    <div class="col">
+      <%= link_to "Back", :diaries, class: "btn btn-light mt-2" %>
+    </div>
   </div>
-<% end %>
+  <div class="row"> 
+    <div class="col mt-3">
+      <h4 class="text-decoration-underline">日記の編集</h4>
+    </div>
+  </div>
+  <%= form_with model: @diary do |f| %>
+    <form class="form-horizontal ">
+      <div class="row"> 
+        <div class="col-sm-4 form-group mx-2">
+          <%= f.label :title ,"タイトル", class: "form-label" %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col-sm-2 form-group mx-2 mt-2">
+          <%= f.label :play_day ,"遊んだ日", class: "form-label" %>
+          <%= f.date_field :play_day, class: "form-control" %>
+        </div>
+        <div class="col-sm-2 form-group mx-2 mt-2">
+          <%= f.label :start_time ,"開始時間", class: "form-label" %>
+          <%= f.time_field :start_time, class: "form-control" %>
+        </div>
+        <div class="col-sm-2 form-group mx-2 mt-2">
+          <p>脱出</p>
+          <%= f.label :result ,"成功", class: "form-check-label col-xs-2" %>
+          <%= f.radio_button :result, true, checked: true, class: "form-check-input" %>
+          <%= f.label :result ,"失敗", class: "form-check-label col-xs-2" %>
+          <%= f.radio_button :result, false, class: "form-check-input" %>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col form-group mx-2 mt-2">
+          <%= f.label :description ,"本文", class: "form-label" %>
+          <%= f.text_area :description, class: "form-control", rows: "5" %>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col form-group mx-2 mt-2">
+          <%= f.label :status ,"状態", class: "form-label" %>
+          <%= f.select :status, [["非公開", "draft"],["公開", "published"]], { class:'item-open' } %>
+        </div>
+      </div>
+      <div class="row mx-2 mt-2">
+        <div class="col-4 form-group">
+          <%= f.submit "編集完了", class: "btn btn-outline-warning mb-3"%>
+        </div>
+      </div>
+    </form>
+  <% end %>
+</div>

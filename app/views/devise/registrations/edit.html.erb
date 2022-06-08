@@ -1,53 +1,69 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
+<div class="container border border-5 border-warning rounded w-50 mb-3 mt-2">
+  <div class="row">
+    <div class="col">
+      <%= link_to "Back", :back, class: "btn btn-light" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row"> 
+    <div class="col">
+      <h4 class="text-decoration-underline">プロフィール編集</h4>
+    </div>
   </div>
+  <div class="row">
+    <form class="form-horizontal">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="col field form-group w-75 mt-2 ">
+          <%= f.label :username, class: "form-label" %><br />
+          <%= f.text_field :username, autofocus: true, class: "form-control" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :profile %><br />
-    <%= f.text_area :profile, autofocus: true %>
+        <div class="field form-group w-75 mt-2 ">
+          <%= f.label :email, class: "form-label col-xs-2" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+
+        <div class="field form-group w-75 mt-2">
+          <%= f.label :profile, class: "form-label col-xs-2" %><br />
+          <%= f.text_area :profile, autofocus: true, class: "form-control" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field form-group w-75 mt-2">
+          <%= f.label :password, class: "form-label col-xs-2" %> <i>(パスワードを変更しない場合は空白のままにして下さい)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          <% if @minimum_password_length %>
+            <em><%= @minimum_password_length %> 文字以上</em>
+          <% end %>
+        </div>
+
+        <div class="field form-group w-75 mt-2">
+          <%= f.label :password_confirmation, class: "form-label col-xs-2" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+
+        <div class="field form-group w-75 mt-2">
+          <%= f.label :current_password, class: "form-label col-xs-2" %> <i>(変更するには、現在のパスワードが必要です)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+        </div>
+
+        <div class="row actions mt-2">
+          <div class="col-4 ">
+            <%= f.submit "Update", class: "btn btn-outline-warning" %>
+          </div>
+        </div>
+      <% end %>
+    </form>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(パスワードを変更したくない場合は空白のままにして下さい)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> 文字以内</em>
-    <% end %>
+  <div class="row">
+    <h5 class="col text-decoration-underline mt-2">アカウントの削除</h5>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row">
+    <p><%= button_to "削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "col btn btn-outline-danger mt-2"%></p>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(変更を確認するには、現在のパスワードが必要です)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>アカウントの削除</h3>
-
-<p>削除しますか? <%= button_to "削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+  

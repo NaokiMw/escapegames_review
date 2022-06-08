@@ -6,8 +6,8 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">ホーム</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">謎レビュとは</a></li>
+          <li><a href="/" class="nav-link px-2 text-secondary">ホーム</a></li>
+          <li><a href="" class="nav-link px-2 text-white">謎レビュとは</a></li>
           <li><a href="/reviews" class="nav-link px-2 text-white">レビュー</a></li>
           <% if user_signed_in? %>
           <li><a href="/mypage" class="nav-link px-2 text-white">マイページ</a></li>
@@ -15,17 +15,23 @@
           <% end %>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="検索...">
+        <% if current_page?(reviews_path) %>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <%= search_form_for @q, url: reviews_path, method: :get, class:"search-form" do |f| %>
+            <%= f.search_field :title_cont, placeholder: 'タイトルから探す', class:'input-box' %>
+            <%= f.button type: "submit", class: 'btn btn-outline-light me-2' do%>
+              検索
+            <% end %>
+          <% end %>
         </form>
+        <% end %>
 
         <div class="text-end">
           <% if user_signed_in? %>
-          <%= link_to "ログアウト", destroy_user_session_path(current_user), method: :delete, class: 'btn btn-outline-light me-2' %>
-            <a href="/users/sign_out(current_user)" class="btn btn-outline-light me-2" roll="button">ログアウト</a>
+            <%= link_to "ログアウト", destroy_user_session_path(current_user), method: :delete, class: 'btn btn-outline-light me-2' %>
           <% else %>
-            <button type="button" class="btn btn-outline-light me-2">ログイン</button>
-            <button type="button" class="btn btn-warning">新規登録</button>
+            <%= link_to "ログイン", user_session_path, class: 'btn btn-outline-light me-2' %>
+            <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-warning' %>
           <% end %>
         </div>
       </div>

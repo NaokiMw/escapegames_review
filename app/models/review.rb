@@ -5,7 +5,7 @@ class Review < ApplicationRecord
   validates :start_time, presence: true
 
   belongs_to :user
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_one_attached :image
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
