@@ -1,13 +1,12 @@
-<header class="navbar navbar-expand-md p-3 text-white bg-warning">
+<header class="navbar navbar-expand-md p-3 text-white bg-warning headerfooter">
   <div class="container-fluid">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" >
-      <strong href="/" class="navbar-brand px-2 text-white">謎レビュ</strong>
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="navbar-brand px-2 text-white">謎レビュ</a>
       <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="レスポンシブ・ナビゲーションバー">
         <span class="fa-solid fa-bars"></span>
       </button>
       <div class="collapse navbar-collapse" id="Navber">
         <ul class="navbar-nav col-8 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="" class="nav-link px-2 text-white">謎レビュとは</a></li>
           <li><a href="/reviews" class="nav-link px-2 text-white">レビュー</a></li>
           <% if user_signed_in? %>
             <li><a href="/mypage" class="nav-link px-2 text-white">マイページ</a></li>
