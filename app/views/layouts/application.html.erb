@@ -14,13 +14,21 @@
 
   <body>
     <%= render "shared/header" %>
-    <% if flash[:notice] %> 
-      <p class="notice"><%= notice %></p>
+    <% if flash[:notice] %>
+      <div class="pt-3">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
+          <%= notice %>
+        </div>
+      </div>
     <% end %>
+    
     <% if flash[:alert] %>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
-        <%= alert %>
+      <div class="pt-3">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
+          <%= alert %>
+        </div>
       </div>
     <% end %>
     <div class="main">

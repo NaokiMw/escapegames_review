@@ -1,6 +1,6 @@
-<div class="card-deck" >
+<div class="container card-deck" >
   <% @review.each do |review| %>
-    <div class="card text-white bg-secondary mb-3">
+    <div class="card text-white bg-secondary ">
       <div class="card-header">
         <h6><%= l review.created_at, format: :default %> <%= review.title %> 脱出に<%= review.result ? '成功' : '失敗' %>した<%= review.user.username %>さんのレビュー</h6>
       </div>

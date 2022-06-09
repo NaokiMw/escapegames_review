@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   before_action :set_search
 
   private
+  def after_sign_out_path_for(resource)
+    root_path
+  end
   def set_search
     @q = Review.ransack(params[:q])
     @search_reviews = @q.result(distinct: true)
