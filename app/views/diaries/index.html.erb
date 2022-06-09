@@ -1,21 +1,11 @@
 <% if user_signed_in? %>
   <div class="d-flex flex-column align-items-stretch bg-white" style="width: 100%;">
-    <%= link_to "新しい日記作成", new_diary_path, class: "btn btn-warning fs-5 fw-semibold mt-2 text-white" %>
+  <%= link_to "新しい日記作成", new_diary_path, class: "btn btn-warning fs-5 fw-semibold mt-2 text-white" %>
     <a href="/diaries" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-5 fw-semibold">公開中の日記一覧</span>
+      <span class="fs-5 fw-semibold">あなたの日記一覧</span>
     </a>
-    
-    <% @published_diaries.each do |diary| %>
-      <%= render "shared/diaryindex", diary: diary %>
-    <% end %>
-  </div>
-  <div class="d-flex flex-column align-items-stretch bg-white" style="width: 100%;">
-    <a href="/diaries" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-5 fw-semibold">非公開の日記一覧</span>
-    </a>
-    <% @draft_diaries.each do |diary| %>
+    <% @user_diaries.each do |diary| %>
       <%= render "shared/diaryindex", diary: diary %>
     <% end %>
   </div>
