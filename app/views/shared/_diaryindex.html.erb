@@ -7,7 +7,11 @@
     </div>
     <div class="col-12 mb-1 small">
       <%= diary.user.username %>さん
-      <%= diary.status ? '公開' : '非公開' %>
+      <% if diary.status == "draft" %>
+        非公開
+      <% else %>
+        公開
+      <% end %>
     </div>
     <div class="col-12 mb-1 small">
       <%= l diary.play_day, format: :short %>
