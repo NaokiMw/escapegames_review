@@ -1,4 +1,4 @@
-<div class="container border border-5 border-warning rounded mx-md-5 mb-3 mt-2">
+<div class="container border border-5 border-warning bg-white rounded mx-md-5">
   <div class="row">
     <button type="button" class="btn btn-warning text-white" data-bs-toggle="collapse" data-bs-target="#collapsemypagelist" aria-expanded="false" aria-controls="collapsemypagelist">
       サブメニュー
@@ -61,7 +61,8 @@
         </div>
         <div class="col-12">
           <p><%=link_to diary.title, diary_path(diary.id), class: "btn btn-secondary rounded text-white" %></p>
-        <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="row">

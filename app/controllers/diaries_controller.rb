@@ -1,7 +1,7 @@
 class DiariesController < ApplicationController
   def index
-    @published_diaries = Diary.published.order(created_at: :desc)
-    @draft_diaries = Diary.draft.order(created_at: :desc)
+    user_id = current_user.id
+    @user_diaries = Diary.where(params[user_id]).order(created_at: :desc)
     followings = current_user.followings
     @follow_diaries = Diary.published.where(user: followings).order(:created_time).limit(10)
   end
@@ -30,8 +30,8 @@ class DiariesController < ApplicationController
   end
 
   def update
-    binding.pry
     @diary = Diary.find(params[:id])
+    binding.pry
     if @diary.update(diary_params)
       flash[:notice] = "タイトル「#{@diary.title}」の日記を更新しました"
       redirect_to :diaries

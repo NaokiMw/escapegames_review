@@ -5,5 +5,5 @@ class Diary < ApplicationRecord
   validates :start_time, presence: true
   validates :description, length: { maximum: 2000 } 
   belongs_to :user
-  enum status: { draft: 0, published: 1 }
+  enum status: { draft: false, published: true }
 end
