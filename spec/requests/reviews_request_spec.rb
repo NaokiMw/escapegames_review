@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Reviews", type: :request do
   let(:user) { create(:user) }
-  let(:review) { create(:review) }
+  let(:review) { create(:review, user_id: user.id) }
   let(:review_params) { attributes_for(:review) }
   
   describe "GET /index,show,new," do

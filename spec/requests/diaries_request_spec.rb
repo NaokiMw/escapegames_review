@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Diaries", type: :request do
   let(:user) { create(:user) }
-  let(:diary) { create(:diary) }
+  let(:diary) { create(:diary, user_id: user.id) }
   let(:diary_params) { attributes_for(:diary) }
   
   describe 'DIARY #create' do

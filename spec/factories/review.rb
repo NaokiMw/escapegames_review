@@ -10,7 +10,6 @@ FactoryBot.define do
     play_day {"2022/11/11"}
     start_time {"17:30"} 
     result {"true"} 
-    user_id {"1"}
     after(:build) do |review|
       review.image.attach(io: File.open('spec/fixtures/files/foo.jpg'), filename: 'foo.jpg', content_type: 'image/jpg')
     end

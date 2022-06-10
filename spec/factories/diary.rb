@@ -1,6 +1,5 @@
 FactoryBot.define do
     factory :diary do
-      user_id {"1"}
       title {"rspecからの脱出"}
       description {"楽しかった"}
       play_day {"2022-11-27"}
