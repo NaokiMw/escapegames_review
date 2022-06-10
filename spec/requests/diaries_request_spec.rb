@@ -5,7 +5,6 @@ RSpec.describe "Diaries", type: :request do
   let(:diary) { create(:diary) }
   let(:diary_params) { attributes_for(:diary) }
   
-
   describe 'DIARY #create' do
     before do 
       sign_in user
