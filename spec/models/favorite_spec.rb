@@ -24,11 +24,11 @@ RSpec.describe Favorite, type: :model do
       end
       it "user_idが同じで,review_idが違う場合でも保存できること" do
         another_review = create(:review, user_id: user.id)
-        expect(FactoryBot.create(:favorite, user_id: user.id, review_id: another_review.id)).to be_valid
+        expect(create(:favorite, user_id: user.id, review_id: another_review.id)).to be_valid
       end
       it "review_idが同じで,user_idが違う場合でも保存できること" do
         another_user = create(:user, email: "another@gmail.com")
-        expect(FactoryBot.create(:favorite, user_id: another_user.id, review_id: review.id)).to be_valid
+        expect(create(:favorite, user_id: another_user.id, review_id: review.id)).to be_valid
       end
     end
   end
