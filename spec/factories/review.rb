@@ -7,7 +7,7 @@ FactoryBot.define do
     review_4 {"ひくい"}
     review_5 {"激ムズ"}
     place {"東京"} 
-    play_day {"2022/11/11"}
+    play_day {"2022-11-11"}
     start_time {"17:30"} 
     result {"true"} 
     after(:build) do |review|
