@@ -1,7 +1,9 @@
-# README
+<h1>謎レビュ</h1>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h3>コンセプト</h3>
+<h4>ネタバレの心配不要の謎解きレビュー共有サイト</h4>
+
+
 
 Things you may want to cover:
 
