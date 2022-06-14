@@ -31,7 +31,6 @@ class DiariesController < ApplicationController
 
   def update
     @diary = Diary.find(params[:id])
-    binding.pry
     if @diary.update(diary_params)
       flash[:notice] = "タイトル「#{@diary.title}」の日記を更新しました"
       redirect_to :diaries
