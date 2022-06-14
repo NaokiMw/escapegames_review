@@ -7,11 +7,11 @@ FactoryBot.define do
     review_4 {"ひくい"}
     review_5 {"激ムズ"}
     place {"東京"} 
-    play_day {"2022/11/11"}
+    play_day {"2022-11-11"}
     start_time {"17:30"} 
     result {"true"} 
-    factory :foo_image do
-      image { Rack::Test::UploadedFile.new("spec/fixtures/foo.jpg", "image/jpg") }
+    after(:build) do |review|
+      review.image.attach(io: File.open('spec/fixtures/files/foo.jpg'), filename: 'foo.jpg', content_type: 'image/jpg')
     end
   end
 end
