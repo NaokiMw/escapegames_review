@@ -37,8 +37,13 @@ RSpec.feature "Diaries", type: :feature do
       sign_in another_user
       visit diaries_path(id: diary.id, user_id: another_user.id)
     end
-    scenario '別のユーザーの日記の詳細画面には編集と削除のリンクが表示されていないこと' do
-      click_link diary.title
+    scenario 'あなたの日記一覧に他のユーザーの日記が表示されていないこと' do
+      expect(page).not_to have_content diary.title
+      expect(page).not_to have_content diary.user.username
+    end
+    scenario '他の人の日記の詳細画面で、編集と削除のリンクが表示されていないこと' do
+      visit diary_path(id: diary.id, user_id: another_user.id)
+      expect(page).to have_content diary.description
       expect(page).not_to have_content '編集'
       expect(page).not_to have_content '削除'
     end
