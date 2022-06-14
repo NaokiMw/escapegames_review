@@ -11,26 +11,52 @@
   公開・非公開機能のついた日記も用意しています。<br>
   謎レビュは脱出ゲームのネタバレ防止に配慮したレビュー型SNSです。<br>
 </h4>
-
-<h3>実際のサイトの画像</h4>
-
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<br>
+<h3>DEMO</h3>
+<h4>レビュー</h4>
+<img width="1289" alt="review sample" src="https://user-images.githubusercontent.com/97737542/173530761-c8c59c5e-811d-49a3-9c87-a2ec91ab4336.png">
+<h4>日記</h4>
+<img width="1327" alt="diary sample" src="https://user-images.githubusercontent.com/97737542/173530658-c4423753-db6f-4114-a462-0b8ebf973936.png">
+<br>
+<h3>ER図</h3>
+<img alt="ER" src="https://user-images.githubusercontent.com/97737542/173531451-f246fc7e-1fba-405f-955f-0ef3665ad78e.png">
+<br>
+<h3>機能一覧</h3>
+<h4>ログイン機能</h4>
+<h5>
+  gemのdeviseを用いており、トップページにゲストログイン用のボタンを設置しています。<br>
+  マイページから、プロフィールやユーザーネーム等を編集できます。
+</h5>
+<br>
+<h4>レビュー機能</h4>
+<h5>
+  raty.jsを用いており、総合評価は星評価で表示されるようにしています。<br>
+  画像はS3に保存され、作成ユーザーは削除ボタン、閲覧ユーザーはいいねとフォローのボタンが表示されます。<br>
+  ヘッダーでレビューのタイトルを検索する機能と、マイページにフォローしたユーザーのレビューのタイトルが表示される機能を実装
+</h5>
+<br>
+<h4>日記機能</h4>
+<h5>
+  日記は公開と非公開を選べるように実装し、フォローしているユーザーの公開されている日記も一覧に表示されます。<br>
+  ログインしていないユーザーはヘッダーの日記へのリンクが非表示になります。<br>
+  詳細画面から日記の編集と削除のリンクが表示されますが、閲覧しているユーザーには表示されません。
+</h5>
+<br>
+<h4>いいね機能</h4>
+<h5>
+  レビューにはいいねをつけることができる機能を実装しています。
+</h5>
+<h4>フォロー機能</h4>
+<h5>
+  フォローしているユーザーとフォローされているユーザーはマイページのリンクから移動したページで確認できます。<br>
+  フォローバックしたり、フォローを外すこともそのページから可能です。
+</h5>
+<br>
+<h3>こだわりポイント</h3>
+<h4>
+  1.bootstrap5の公式ドキュメントを読みながら、レスポンスデザインにしました。<br>
+  2.探偵をテーマにした背景素材と、レンガ調のヘッダーとフッターで統一感を持たせました。<br>
+  3.ネタバレ防止の為に、レビューの新規作成は選択形式、日記は一覧のタイトルを確認して自衛できるようにしました。<br>
+</h4>
+<br>
+<h4>作成者: 前川直輝</h4>
