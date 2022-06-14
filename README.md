@@ -19,7 +19,7 @@
 <img width="1327" alt="diary sample" src="https://user-images.githubusercontent.com/97737542/173530658-c4423753-db6f-4114-a462-0b8ebf973936.png">
 <br>
 <h3>ER図</h3>
-![erd](https://user-images.githubusercontent.com/97737542/173531451-f246fc7e-1fba-405f-955f-0ef3665ad78e.png)
+<img alt="ER" src="https://user-images.githubusercontent.com/97737542/173531451-f246fc7e-1fba-405f-955f-0ef3665ad78e.png">
 <br>
 <h3>機能一覧</h3>
 <h4>ログイン機能</h4>
@@ -51,3 +51,12 @@
   フォローしているユーザーとフォローされているユーザーはマイページのリンクから移動したページで確認できます。<br>
   フォローバックしたり、フォローを外すこともそのページから可能です。
 </h5>
+<br>
+<h3>こだわりポイント</h3>
+<h4>
+  1.bootstrap5の公式ドキュメントを読みながら、レスポンスデザインにしました。<br>
+  2.探偵をテーマにした背景素材と、レンガ調のヘッダーとフッターで統一感を持たせました。<br>
+  3.ネタバレ防止の為に、レビューの新規作成は選択形式、日記は一覧のタイトルを確認して自衛できるようにしました。<br>
+</h4>
+<br>
+<h4>作成者: 前川直輝</h4>
