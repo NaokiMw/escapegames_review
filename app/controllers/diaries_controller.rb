@@ -3,7 +3,7 @@ class DiariesController < ApplicationController
     user_id = current_user.id
     @user_diaries = Diary.where(user_id: user_id).order(created_at: :desc)
     followings = current_user.followings
-    @follow_diaries = Diary.published.where(user: followings).order(:created_time).limit(10)
+    @follow_diaries = Diary.published.where(user: followings).order(:created_at).limit(10)
   end
 
   def new
