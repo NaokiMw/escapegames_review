@@ -10,7 +10,6 @@ import "channels";
 import '@fortawesome/fontawesome-free/js/all';
 import 'bootstrap';
 import "../stylesheets/application.scss";
-import 'stylesheets/reviews.scss';
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
