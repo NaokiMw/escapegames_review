@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find_by(params[:id])
+    @review = Review.find_by(id: params[:id])
     @review.user_id = current_user.id
     @review.destroy
     flash[:notice] = "レビューを削除しました"
