@@ -40,7 +40,8 @@ class DiariesController < ApplicationController
   end
 
   def destroy
-    @diary = Diary.find_by(params[:id],user_id: current_user.id)
+    @diary = Diary.find_by(params[:id])
+    @diary.user_id = current_user.id
     @diary.destroy
     flash[:notice] = "日記を削除しました"
     redirect_to :diaries
