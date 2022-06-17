@@ -21,15 +21,23 @@
       </div>
 
       <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <%= f.label :tag, 'タグ', class: "form-label" %>
+          <%= f.text_field :tag, placeholder: "スペースで区切ることで複数指定できます", value: @review.tags.pluck(:name), class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="form-group offset-md-3 col-md-2 mt-2">
           <%= f.label :play_day ,"遊んだ日", class: "form-label" %>
           <%= f.date_field :play_day, class: "form-control" %>
         </div>
         <div class="form-group col-md-2 mt-2">
-          <%= f.label :start_time ,"開始時間", class: "form-label col-xs-2" %>
+          <%= f.label :start_time ,"開始時間", class: "form-label" %>
           <%= f.time_field :start_time, class: "form-control" %>
         </div>
       </div>
+
       <div class="row">
         <div class="form-group offset-md-3 col-md-6 mt-2">
           <%= f.label :image ,"記念写真", class: "form-label" %>
@@ -76,7 +84,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="row">
         <div class="col-md-6 offset-md-3 field form-group mt-2">
           <div class="checkbox">
             <div>満足度は？</div>
@@ -92,7 +100,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="row">
         <div class="col-md-6 offset-md-3 field form-group mt-2">
           <div class="checkbox">
             <div>むずかしさは？</div>
@@ -108,7 +116,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="row">
         <div class="col-md-6 offset-md-3 field form-group mt-2">
           <div>脱出は？</div>
           <%= f.label :result ,"成功", value: :true, class: "form-check-label" %>

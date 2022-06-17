@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   def index
     @reviews = Review.all
+    @tag = Tag.all
   end
 
   def new
@@ -11,6 +12,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     if @review.save
+      @review.save_tags(params[:review][:tag])
       flash[:notice] = "レビューを新規作成しました"
       redirect_to :reviews
     else
