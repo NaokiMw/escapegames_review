@@ -7,7 +7,11 @@
   <div class="card-deck" >
     <% @search_reviews.each do |review| %>  
       <div class="card-header text-white bg-secondary mt-2">
-        <h6><%= l review.created_at, format: :default %> <%= review.title %> 脱出に<%= review.result ? '成功' : '失敗' %>した<%= review.user.username %>さんのレビュー</h6>
+        <h5><%= l review.created_at, format: :default %> <%= review.title %></h5>
+        <div class="d-flex justify-content-between">
+        <h6>開催場所 <%= review.place %></h6>
+        <h6 class="float-right">脱出に<%= review.result ? '成功' : '失敗' %>した<%= review.user.username %>さんのレビュー</h6>
+        </div>
       </div>   
       <div class="card text-white bg-secondary">
         <div class="row g-0">
@@ -15,14 +19,14 @@
             <%= image_tag review.image.variant(resize_to_fill: [250, 200]).processed, class: "card-img-top img-responsive ps-3 pt-3" %>
           </div>
           <div class="col-md-1"></div>
-          <div class="col-md-4">
+          <div class="col-md-2">
             <p class="card-text">
-              <h3>PLACE</h3>
-              <h4><%= review.place %></h5>
-              <h3>PLAYDAY</h3>
-              <h4><%= l review.play_day, format: :short %></h5>
-              <h3>STARTTIME</h3>
-              <h4><%= l review.start_time, format: :short %><h3>
+              <h3>体験日</h3>
+              <h4><%= l review.play_day, format: :short %></h4>
+              <h3>制限時間</h3>
+              <h4><%= review.timelimit %>分</h4>
+              <h3>プレイ人数</h3>
+              <h4><%= review.players %>人<h4>
             </p>
             <% if user_signed_in? %>
               <% if current_user.id == review.user_id %>
@@ -40,10 +44,20 @@
                 <% end %>
               <% end %>
             <% end %>
-          </div> 
+          </div>
+          <div class="col-md-2">
+            <p class="card-text">
+              <h3>料金</h3>
+              <h4>¥<%= review.price %></h4>
+              <h3>開始時間</h3>
+              <h4><%= l review.start_time, format: :short %><h3>
+              <h3>友人・知り合い</h3>
+              <h4><%= review.friends %>人<h4>
+            </p> 
+          </div>
           <div class="col-md-3">   
             <div class="card-body">
-              <h4 class="card-title">REVIEW>
+              <h4 class="card-title">REVIEW
                 <div id="star-rate<%= review.id %>"></div>    
                 <script>
                   $('#star-rate<%= review.id %>').raty({
