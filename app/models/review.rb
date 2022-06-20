@@ -3,6 +3,11 @@ class Review < ApplicationRecord
   validates :play_day, presence: true 
   validates :result, inclusion: { in: [true, false] }
   validates :start_time, presence: true
+  validates :timelimit, presence: true
+  validates :price, presence: true
+  validates :players, presence: true
+  validates :friends, presence: true
+  validates :review_1, presence: true
 
   belongs_to :user
   has_many :favorites, dependent: :destroy
