@@ -21,16 +21,17 @@
             お試しでレビューを投稿してみたい方は、<br>
             ゲストログインでレビューをご投稿下さい。
           </p>
-          <div class="card-footer text-center">
-            <%= button_to 'ゲストログイン', users_guest_sign_in_path, class: 'btn btn-outline-secondary', method: :post %>
-          </div>
+          <% if user_signed_in? %>
+            <div class="card-footer text-center">
+              <div class="btn btn-secondary" disabled>ログイン済み</div>
+            </div>
+          <% else %>
+            <div class="card-footer text-center">
+              <%= button_to 'ログイン', users_guest_sign_in_path, class: 'btn btn-outline-secondary', method: :post %>
+            </div>
+          <% end %>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      
     </div>
   </div>
 </div>
