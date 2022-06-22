@@ -49,6 +49,6 @@ class DiariesController < ApplicationController
 
   private
   def diary_params
-    params.require(:diary).permit(:title, :play_day, :start_time, :result, :description, :status, :user_id)
+    params.require(:diary).permit(:title, :play_day, :start_time, :result, :description, :status, :image, :price, :players, :friends, :timelimit, :user_id)
   end
 end
