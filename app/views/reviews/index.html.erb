@@ -3,7 +3,7 @@
   <p><%= link_to "レビューの新規登録", new_review_path, class: "btn btn-outline-light" %></p>
 </div>
 <% end %>
-<div class="container">
+<div class="container pt-2">
   <div class="card-deck" >
     <% @search_reviews.each do |review| %>  
       <div class="card-header text-white bg-secondary mt-2">
@@ -15,11 +15,11 @@
       </div>   
       <div class="card text-white bg-secondary">
         <div class="row g-0">
-          <div class="col-md-4">
+          <div class="col-12 col-md-4">
             <%= image_tag review.image.variant(resize_to_fill: [250, 200]).processed, class: "card-img-top img-responsive ps-3 pt-3" %>
           </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-2">
+          <div class="col-12 col-md-1"></div>
+          <div class="col-6 col-md-2">
             <p class="card-text">
               <h3>体験日</h3>
               <h4><%= l review.play_day, format: :short %></h4>
@@ -45,7 +45,7 @@
               <% end %>
             <% end %>
           </div>
-          <div class="col-md-2">
+          <div class="col-6 col-md-2">
             <p class="card-text">
               <h3>料金</h3>
               <h4>¥<%= review.price %></h4>
@@ -55,7 +55,7 @@
               <h4><%= review.friends %>人<h4>
             </p> 
           </div>
-          <div class="col-md-3">   
+          <div class="col-12 col-md-3">   
             <div class="card-body">
               <h4 class="card-title">REVIEW
                 <div id="star-rate<%= review.id %>"></div>    
@@ -84,7 +84,7 @@
                   <div class="fw-bold">3.満足度</div>
                   <h4 class="text-center"><%= review.review_4 %></h4>
                 </li>
-                <li class="list-group-item list-group-item-dark ">
+                <li class="list-group-item list-group-item-dark">
                   <div class="fw-bold">4.難しさ</div>
                   <h4 class="text-center"><%= review.review_5 %></h4>
                 </li>

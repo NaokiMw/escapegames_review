@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root 'homes#index'
   post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
