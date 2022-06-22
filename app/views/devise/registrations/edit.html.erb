@@ -33,27 +33,6 @@
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
-      <div class="row">
-        <div class="col-md-6 offset-md-3 field form-group mt-2">
-          <%= f.label :password, class: "form-label col-xs-2" %> <i>(変更したい場合)</i><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-          <% if @minimum_password_length %>
-            <em><%= @minimum_password_length %> 文字以上</em>
-          <% end %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 offset-md-3 field form-group mt-2">
-          <%= f.label :password_confirmation, class: "form-label col-xs-2" %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 offset-md-3 field form-group  mt-2">
-          <%= f.label :current_password, class: "form-label col-xs-2" %> <i>(変更には現在のパスワードが必要です)</i><br />
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-        </div>
-      </div>
       <div class="row actions">
         <div class="col-md-6 offset-md-3 mt-2">
           <%= f.submit "編集", class: "btn btn-outline-warning col-md-6 offset-md-3" %>

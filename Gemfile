@@ -66,6 +66,10 @@ gem 'pry-rails'
 gem "aws-sdk-s3", require: false
 gem 'dotenv-rails'
 gem 'ransack'
+gem 'omniauth'
+gem "omniauth-rails_csrf_protection"
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 group :production do
   gem 'pg'
 end
