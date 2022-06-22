@@ -23,7 +23,7 @@
           </p>
           <% if user_signed_in? %>
             <div class="card-footer text-center">
-              <div class="btn btn-secondary" disabled>ログイン済み</div>
+            <%= link_to 'レビューページへ', reviews_path, class: 'btn btn-outline-danger' %>
             </div>
           <% else %>
             <div class="card-footer text-center">
@@ -33,5 +33,6 @@
         </div>
       </div>
     </div>
+    <%= render "homes/about" %>
   </div>
 </div>
