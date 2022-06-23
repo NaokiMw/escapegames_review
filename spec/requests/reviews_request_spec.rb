@@ -29,7 +29,7 @@ RSpec.describe "Reviews", type: :request do
         expect(response.main).to include review.review_5
         expect(response.main).to include review.play_day
         expect(response.main).to include review.start_time
-        expect(response.main).to include review.place
+        expect(response.main).to include review.address
         expect(response.main).to include review.image
       end
     end

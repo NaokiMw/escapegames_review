@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_22_094718) do
+ActiveRecord::Schema.define(version: 2022_06_23_133125) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2022_06_22_094718) do
     t.string "review_3"
     t.string "review_4"
     t.string "review_5"
-    t.string "place"
+    t.string "address"
     t.date "play_day"
     t.time "start_time"
     t.boolean "result"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 2022_06_22_094718) do
     t.integer "timelimit"
     t.integer "players"
     t.integer "friends"
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "tag_maps", force: :cascade do |t|

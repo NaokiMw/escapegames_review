@@ -6,7 +6,7 @@ FactoryBot.define do
     review_3 {"学生向き"} 
     review_4 {"ひくい"}
     review_5 {"激ムズ"}
-    place {"東京"} 
+    address {"東京"} 
     play_day {"2022-11-11"}
     start_time {"17:30"} 
     result {"true"} 

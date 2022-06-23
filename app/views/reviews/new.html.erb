@@ -12,14 +12,17 @@
           <%= f.text_field :title, class: "form-control", placeholder: "プレイしたタイトルを入力して下さい" %>
         </div>
       </div>
-
       <div class="row">
-        <div class="col-md-6 offset-md-3 field form-group mt-2">
-          <%= f.label :place, "場所", class: "form-label" %>
-          <%= f.text_field :place, class: "form-control", placeholder: "プレイした場所を入力して下さい" %>
+        <div class="col-md-6 offset-md-3 field  form-group mt-2">
+          <%= f.label :address, "場所", class: "form-label text-end" %>
+          <%= f.text_field :address, class: "form-control ", id:"pac-input", placeholder: "プレイした場所を入力して下さい", onChange:"codeAddress()" %>
+        </div>
+        <div class="col-md-6 offset-md-3 mt-2">
+          <div id="display"></div>
+          <div id="map" class=" mt-2"></div>
         </div>
       </div>
-
+      
       <div class="row">
         <div class="col-md-6 offset-md-3 field form-group mt-2">
           <%= f.label :tag, 'タグ', class: "form-label" %>
@@ -126,15 +129,16 @@
       </div>
     </form>
   </div>
-  <!-- 評価javascript -->
-  <script>
-    $('#star').raty({
-      size     : 15,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'review[review_1]',
-      half: true,
-    });
-  </script>  
 <% end %>
+
+<!-- 評価javascript -->
+<script>
+  $('#star').raty({
+    size     : 15,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'review[review_1]',
+    half: true,
+  });
+</script>

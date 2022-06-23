@@ -69,6 +69,7 @@ gem 'ransack'
 gem 'omniauth', '1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem "geocoder"
 group :production do
   gem 'pg'
 end
