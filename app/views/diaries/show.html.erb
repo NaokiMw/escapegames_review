@@ -20,7 +20,7 @@
         <strong class="h1 border-dark border-bottom"><%= diary.title %></strong>
       </div>
       <div class="col-sm-2">
-        <%= image_tag diary.image.variant(resize_to_fill: [250, 200]).processed, class: "img-thumbnail img-responsive" %>
+        <%= image_tag diary.image.variant(resize_to_fill: [250, 200]), class: "img-thumbnail img-responsive" %>
       </div>  
     </div>
     <div class="row my-2">
