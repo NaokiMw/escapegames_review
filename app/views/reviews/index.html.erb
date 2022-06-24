@@ -59,8 +59,10 @@
               <h4><%= l review.start_time, format: :short %><h3>
               <h3>友人・知り合い</h3>
               <h4><%= review.friends %>人<h4>
-            </p> 
-            <%= link_to "MAP", review_path(review.id), class: "btn btn-outline-light" %>
+            </p>
+            <% if user_signed_in? %> 
+              <%= link_to "MAP", review_path(review.id), class: "btn btn-outline-light" %>
+            <% end %>
           </div>
           <div class="col-12 col-md-3">   
             <div class="card-body">
