@@ -8,6 +8,7 @@ class Review < ApplicationRecord
   validates :players, presence: true
   validates :friends, presence: true
   validates :review_1, presence: true
+  validates :image, attached: true, content_type: ['image/png', 'image/jpeg'], limit: { max: 1 }, size: { less_than: 100.megabytes , message: '100MB未満の画像にしてください' }
 
   belongs_to :user
   has_many :favorites, dependent: :destroy

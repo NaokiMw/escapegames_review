@@ -12,21 +12,58 @@
   <%= form_with model: @diary do |f| %>
     <form class="form-horizontal ">
       <div class="row"> 
-        <div class="col-sm-4 form-group mx-2">
+        <div class="col-sm-4 field form-group mx-2">
           <%= f.label :title ,"タイトル", class: "form-label" %>
-          <%= f.text_field :title, class: "form-control" %>
+          <%= f.text_field :title, class: "form-control",placeholder: "50字以内" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-4 mx-2 mt-2">
+          <%= f.label :image ,"記念写真", class: "form-label" %>
+          <%= f.file_field :image, class: "form-control" %>
         </div>
       </div>
       <div class="row"> 
-        <div class="col-sm-2 form-group mx-2 mt-2">
+        <div class="col-sm-2 field form-group mx-2 mt-2">
           <%= f.label :play_day ,"遊んだ日", class: "form-label" %>
           <%= f.date_field :play_day, class: "form-control" %>
         </div>
-        <div class="col-sm-2 form-group mx-2 mt-2">
+        <div class="col-sm-2 field form-group mx-2 mt-2">
           <%= f.label :start_time ,"開始時間", class: "form-label" %>
           <%= f.time_field :start_time, class: "form-control" %>
         </div>
+        <div class="form-group col-sm-2 mt-2">
+          <%= f.label :timelimit, "制限時間", class: "form-label" %>
+          <div class="input-group">
+            <%= f.number_field :timelimit, in: 0.0..4800.0, step: 5.0, value:90, class: "form-control" %>
+            <span class="input-group-text">分</span>
+          </div>
+        </div>
         <div class="col-sm-2 form-group mx-2 mt-2">
+          <%= f.label :price, "料金", class: "form-label" %>
+          <div class="input-group">
+            <span class="input-group-text">¥</span>
+            <%= f.number_field :price, in: 0.0..500000.0, value:2200, step: 100.0, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row"> 
+      <div class="form-group col-sm-2 mx-2 mt-2">
+        <%= f.label :players, "プレイ人数", class: "form-label" %>
+        <div class="input-group">
+          <%= f.number_field :players, in: 1.0..200.0, value:1, class: "form-control" %>
+          <span class="input-group-text">人</span>
+        </div>
+      </div>
+        <div class="form-group col-sm-2 mx-2 mt-2">
+          <%= f.label :friends, "友達・知り合い", class: "form-label" %>
+          <div class="input-group">
+            <%= f.number_field :friends, in: 0.0..200.0, value:0, class: "form-control" %>
+            <span class="input-group-text">人</span>
+          </div>
+        </div>        
+        <div class="col-sm-2 field form-group mx-2 mt-2">
           <p>脱出</p>
           <%= f.label :result ,"成功", class: "form-check-label col-xs-2" %>
           <%= f.radio_button :result, true, checked: true, class: "form-check-input" %>
@@ -35,20 +72,20 @@
         </div>
       </div>
       <div class="row"> 
-        <div class="col form-group mx-2 mt-2">
-          <%= f.label :description ,"本文", class: "form-label" %>
-          <%= f.text_area :description, class: "form-control", rows: "5" %>
+        <div class="field form-group mx-2 mt-2">
+          <%= f.label :description ,"本文(2000字以内)", class: "form-label" %>
+          <%= f.text_area :description, class: "form-control ", rows: "20" %>
         </div>
       </div>
       <div class="row"> 
-        <div class="col form-group mx-2 mt-2">
+        <div class="field form-group mx-2 mt-2">
           <%= f.label :status ,"状態", class: "form-label" %>
-          <%= f.select :status, {"非公開": "draft", "公開": "published"}, { class:'item-open form-control' } %>
+          <%= f.select :status, [["非公開", "draft"],["公開", "published"]], { class:'item-open form-select' } %>
         </div>
       </div>
-      <div class="row mx-2 mt-2">
+      <div class="row actions mx-2 mt-2">
         <div class="col-4 form-group">
-          <%= f.submit "編集完了", class: "btn btn-outline-warning mb-3"%>
+          <%= f.submit "登録完了する", class: "btn btn-outline-warning mb-3"%>
         </div>
       </div>
     </form>

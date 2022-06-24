@@ -8,6 +8,8 @@ class Diary < ApplicationRecord
   validates :price, presence: true
   validates :players, presence: true
   validates :friends, presence: true
+  validates :image, content_type: ['image/png', 'image/jpeg'], limit: { max: 1 }, size: { less_than: 100.megabytes , message: '100MB未満の画像にしてください' }
+
   belongs_to :user
   has_one_attached :image
   enum status: { draft: false, published: true }

@@ -22,7 +22,7 @@
       <div class="card text-white bg-secondary">
         <div class="row g-0">
           <div class="col-12 col-md-4">
-            <%= image_tag review.image.variant(resize_to_fill: [250, 200]), class: "card-img-top img-responsive img-thumbnail" %>
+            <%= image_tag review.image.variant(resize_to_fill: [250, 200]).processed, class: "card-img-top img-responsive img-thumbnail" %>
           </div>
           <div class="col-12 col-md-1"></div>
           <div class="col-6 col-md-2">
