@@ -4,11 +4,12 @@ RSpec.describe "Reviews", type: :request do
   let(:user) { create(:user) }
   let(:review) { create(:review, user_id: user.id) }
   let(:review_params) { attributes_for(:review) }
-  
+
   describe "GET /index,show,new," do
-    before do 
+    before do
       sign_in user
     end
+
     it 'レビューの新規登録画面が表示されること' do
       get new_review_path
       expect(response).to have_http_status(200)

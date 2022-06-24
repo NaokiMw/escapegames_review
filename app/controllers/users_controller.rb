@@ -8,9 +8,11 @@ class UsersController < ApplicationController
     followings = current_user.followings
     @follow_reviews = Review.where(user: followings).order(:created_at).limit(10)
   end
+
   def mypage
     redirect_to user_path(current_user)
   end
+
   def follows
     user = User.find(params[:id])
     @users = user.followings

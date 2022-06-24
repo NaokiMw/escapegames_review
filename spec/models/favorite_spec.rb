@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe Favorite, type: :model do
   let!(:user) { create(:user) }
   let!(:review) { create(:review, user_id: user.id) }
+
   before do
     @favorite = build(:favorite, user_id: user.id, review_id: review.id)
   end
+
   describe '正常値と異常値の確認' do
     context 'favoriteモデルのバリデーション' do
       it "user_idとreview_idがあれば保存できる" do

@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Diary, type: :model do
-  let!(:user) {create(:user)}
+  let!(:user) { create(:user) }
+
   before do
     @diary = build(:diary, user_id: user.id)
   end

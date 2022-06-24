@@ -11,6 +11,7 @@ RSpec.describe Relationship, type: :model do
         expect(relationship).to be_valid
       end
     end
+
     context 'unsuccesfully' do
       it 'is invalid without follower_id' do
         relationship.follower_id = nil

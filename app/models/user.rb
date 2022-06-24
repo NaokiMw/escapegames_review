@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[facebook google_oauth2]
-  
-  validates :username, presence: true 
-  validates :profile, length: { maximum: 200 } 
+         :omniauthable, omniauth_providers: %i[google_oauth2]
+
+  validates :username, presence: true
+  validates :profile, length: { maximum: 200 }
   has_many :reviews, dependent: :destroy
   has_many :diaries, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -22,6 +22,7 @@ class User < ApplicationRecord
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.username = 'ゲストユーザー'
@@ -30,12 +31,13 @@ class User < ApplicationRecord
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
     end
   end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.username = auth.info.name
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
     end
   end
 end

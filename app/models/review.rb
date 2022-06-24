@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
   validates :title, :address, presence: true, length: { maximum: 50 }
-  validates :play_day, presence: true 
+  validates :play_day, presence: true
   validates :result, inclusion: { in: [true, false] }
   validates :start_time, presence: true
   validates :timelimit, presence: true
@@ -16,9 +16,11 @@ class Review < ApplicationRecord
   has_many :tags, through: :tag_maps
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    favorites.exists?(user_id: user.id)
   end
+
   def save_tags(tags)
     tag_list = tags.split(/[[:blank:]]+/)
     current_tags = self.tags.pluck(:name)
