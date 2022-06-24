@@ -9,16 +9,17 @@
       <div class="card-header text-white bg-secondary mt-2">
         <div class="row">
           <div class="col-12">
-            <h5><%= l review.created_at, format: :default %> <%= review.title %></h5>
+            <h6><%= l review.created_at, format: :default %>投稿</h6>
           </div>
+          <h5><%= review.title %></h5>
           <div class="col-12">
-          <div class="d-flex justify-content-between">
-            <h6>開催場所 <%= review.address %></h6>
-            <h6 class="float-right">脱出に<%= review.result ? '成功' : '失敗' %>した<%= review.user.username %>さんのレビュー</h6>
+            <div class="d-flex justify-content-between">
+              <h6>開催場所<br><%= review.address %></h6>
+              <h6 class="float-right text-end">投稿者 脱出に<%= review.result ? '成功' : '失敗' %>した<br><%= review.user.username %></h6>
+            </div>
           </div>
         </div>
       </div>
-      </div>   
       <div class="card text-white bg-secondary">
         <div class="row g-0">
           <div class="col-12 col-md-4">
@@ -39,12 +40,12 @@
                 <%= link_to "レビューの削除", review, method: :delete, class:"btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
               <% else %>
                 <% if review.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-                  <p><%= button_to "興味なし", review_favorites_path(review.id), class: "btn btn-warning", method: :delete %></p>
+                  <p><%= button_to "興味なし", review_favorites_path(review.id), class: "btn btn-outline-light", method: :delete %></p>
                 <% else %>
-                  <p><%= button_to "興味あり", review_favorites_path(review.id), class: "btn btn-light", method: :post %></p>
+                  <p><%= button_to "興味あり", review_favorites_path(review.id), class: "btn btn-warning", method: :post %></p>
                 <% end %>
                 <% if review.user.followed_by?(current_user) %>
-                  <p><%=button_to "フォロー済み", user_relationships_path(review.user.id), method: :delete, class: "btn btn-secondary" %></p>
+                  <p><%=button_to "フォロー中", user_relationships_path(review.user.id), method: :delete, class: "btn btn-secondary" %></p>
                 <% else %>
                   <p><%=button_to "フォローする", user_relationships_path(review.user.id), method: :post, class: "btn btn-secondary" %></p>
                 <% end %>
@@ -57,7 +58,7 @@
               <h4>¥<%= review.price %></h4>
               <h3>開始時間</h3>
               <h4><%= l review.start_time, format: :short %><h3>
-              <h3>友人・知り合い</h3>
+              <h3>友人・家族</h3>
               <h4><%= review.friends %>人<h4>
             </p>
             <% if user_signed_in? %> 
@@ -82,11 +83,11 @@
               </h4>
               <ol class="list-group">
                 <li class="list-group-item list-group-item-dark ">
-                  <div class="fw-bold">1.タイプ</div>
+                  <div class="fw-bold">1.ジャンル</div>
                   <h4 class="text-center"><%= review.review_2 %></h4>
                 </li>
                 <li class="list-group-item list-group-item-dark ">
-                  <div class="fw-bold">2.ストーリー</div>
+                  <div class="fw-bold">2.内容</div>
                   <h4 class="text-center"><%= review.review_3 %></h4>
                 </li>
                 <li class="list-group-item list-group-item-dark ">

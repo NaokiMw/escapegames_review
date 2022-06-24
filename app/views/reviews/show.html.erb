@@ -1,5 +1,8 @@
 <div class="text-center pt-3">
-  <p><%= link_to "一覧に戻る", reviews_path, class: "btn btn-outline-light" %></p>
+  <p>
+    <%= link_to "レビューの一覧へ", reviews_path, class: "btn btn-outline-light" %>
+    <%= link_to "マイページへ", mypage_path, class: "btn btn-outline-light" %>
+  </p>
 </div>
 <div class="container card-deck pt-3" >
   <% @review.each do |review| %>
@@ -76,11 +79,11 @@
             </h4>
             <ol class="list-group">
               <li class="list-group-item list-group-item-dark ">
-                <div class="fw-bold">1.タイプ</div>
+                <div class="fw-bold">1.ジャンル</div>
                 <h4 class="text-center"><%= review.review_2 %></h4>
               </li>
               <li class="list-group-item list-group-item-dark ">
-                <div class="fw-bold">2.ストーリー</div>
+                <div class="fw-bold">2.内容</div>
                 <h4 class="text-center"><%= review.review_3 %></h4>
               </li>
               <li class="list-group-item list-group-item-dark ">

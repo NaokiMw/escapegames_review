@@ -1,4 +1,4 @@
-<div class="container-md border border-3 border-warning bg-white rounded mx-xl-5">
+<div class="container-md border border-2 border-secondary border-opacity-25 bg-white rounded mx-xl-5">
   <% @diary.each do |diary| %>
     <div class="row">
       <div class="col-sm-1">
@@ -57,7 +57,7 @@
       <% end %>
     </div>
     <div class="row">
-      <div class="col-sm-12 border border-warning">
+      <div class="col-sm-12 border-top border-2 border-secondary border-opacity-25">
         <h4 class="mt-1"><%= safe_join(diary.description.split("\n"),tag(:br)) %></h4>
       </div>
     </div>
