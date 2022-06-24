@@ -10,6 +10,10 @@ FactoryBot.define do
     play_day {"2022-11-11"}
     start_time {"17:30"} 
     result {"true"} 
+    timelimit {"90"}
+    players {"5"}
+    friends {"3"}
+    price {"2200"}
     after(:build) do |review|
       review.image.attach(io: File.open('spec/fixtures/files/foo.jpg'), filename: 'foo.jpg', content_type: 'image/jpg')
     end

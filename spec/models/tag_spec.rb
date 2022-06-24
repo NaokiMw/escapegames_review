@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Tag, type: :model d
+RSpec.describe Tag, type: :model do
   before do
     @tag = build(:tag)
   end
