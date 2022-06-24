@@ -9,6 +9,7 @@ RSpec.feature "Diaries", type: :feature do
       sign_in user
       visit diaries_path(id: diary.id, user_id: user.id)
     end
+
     scenario '日記の新規作成画面に移動すること' do
       click_link '新しい日記作成'
       expect(page).to have_content '日記新規作成'
@@ -29,6 +30,7 @@ RSpec.feature "Diaries", type: :feature do
       expect(page).to have_content '削除'
     end
   end
+
   describe "#別のユーザーの場合の日記機能のテスト" do
     given(:user) { create(:user) }
     given(:another_user) { create(:user, email: "another@gmail.com") }
@@ -37,6 +39,7 @@ RSpec.feature "Diaries", type: :feature do
       sign_in another_user
       visit diaries_path(id: diary.id, user_id: another_user.id)
     end
+
     scenario 'あなたの日記一覧に他のユーザーの日記が表示されていないこと' do
       expect(page).not_to have_content diary.title
       expect(page).not_to have_content diary.user.username

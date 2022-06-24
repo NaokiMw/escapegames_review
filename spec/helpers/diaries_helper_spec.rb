@@ -10,5 +10,5 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe DiariesHelper, type: :helper do
-end
+# RSpec.describe DiariesHelper, type: :helper do
+# end

@@ -5,7 +5,7 @@ RSpec.describe "Users", type: :request do
   let(:review) { create(:review) }
   let(:diary) { create(:diary) }
 
-  before do 
+  before do
     sign_in user
   end
 
@@ -15,5 +15,4 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(200)
     end
   end
-
 end

@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  let!(:user) {create(:user)}
+  let!(:user) { create(:user) }
+
   before do
     @review = build(:review, user_id: user.id)
   end

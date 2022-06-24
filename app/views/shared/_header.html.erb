@@ -16,7 +16,7 @@
         <% if current_page?(reviews_path) %>
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <%= search_form_for @q, url: reviews_path, method: :get, class:"search-form" do |f| %>
-              <%= f.search_field :place_or_title_or_review_2_or_review_3_or_review_4_or_review_5_or_tags_name_cont, placeholder: 'キーワード・タグ検索', class:'input-box' %>
+              <%= f.search_field :address_or_title_or_review_2_or_review_3_or_review_4_or_review_5_or_tags_name_cont, placeholder: 'キーワード・タグ検索', class:'input-box' %>
               <%= f.button type: "submit", class: 'btn btn-outline-light me-2' do%>
                 検索
               <% end %>

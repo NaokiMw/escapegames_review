@@ -17,10 +17,10 @@ class DiariesController < ApplicationController
       flash[:notice] = "日記を新規作成しました"
       redirect_to :diaries
     else
-      render"new"
+      render "new"
     end
   end
-  
+
   def show
     @diary = Diary.where(id: params[:id])
   end
@@ -35,7 +35,7 @@ class DiariesController < ApplicationController
       flash[:notice] = "タイトル「#{@diary.title}」の日記を更新しました"
       redirect_to :diaries
     else
-        render "edit"
+      render "edit"
     end
   end
 
@@ -48,6 +48,7 @@ class DiariesController < ApplicationController
   end
 
   private
+
   def diary_params
     params.require(:diary).permit(:title, :play_day, :start_time, :result, :description, :status, :image, :price, :players, :friends, :timelimit, :user_id)
   end

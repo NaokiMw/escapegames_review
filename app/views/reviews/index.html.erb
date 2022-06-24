@@ -7,16 +7,22 @@
   <div class="card-deck" >
     <% @search_reviews.each do |review| %>  
       <div class="card-header text-white bg-secondary mt-2">
-        <h5><%= l review.created_at, format: :default %> <%= review.title %></h5>
-        <div class="d-flex justify-content-between">
-        <h6>開催場所 <%= review.place %></h6>
-        <h6 class="float-right">脱出に<%= review.result ? '成功' : '失敗' %>した<%= review.user.username %>さんのレビュー</h6>
+        <div class="row">
+          <div class="col-12">
+            <h5><%= l review.created_at, format: :default %> <%= review.title %></h5>
+          </div>
+          <div class="col-12">
+          <div class="d-flex justify-content-between">
+            <h6>開催場所 <%= review.address %></h6>
+            <h6 class="float-right">脱出に<%= review.result ? '成功' : '失敗' %>した<%= review.user.username %>さんのレビュー</h6>
+          </div>
         </div>
+      </div>
       </div>   
       <div class="card text-white bg-secondary">
         <div class="row g-0">
           <div class="col-12 col-md-4">
-            <%= image_tag review.image.variant(resize_to_fill: [250, 200]).processed, class: "card-img-top img-responsive ps-3 pt-3" %>
+            <%= image_tag review.image.variant(resize_to_fill: [250, 200]).processed, class: "card-img-top img-responsive img-thumbnail" %>
           </div>
           <div class="col-12 col-md-1"></div>
           <div class="col-6 col-md-2">
@@ -53,11 +59,14 @@
               <h4><%= l review.start_time, format: :short %><h3>
               <h3>友人・知り合い</h3>
               <h4><%= review.friends %>人<h4>
-            </p> 
+            </p>
+            <% if user_signed_in? %> 
+              <%= link_to "MAP", review_path(review.id), class: "btn btn-outline-light" %>
+            <% end %>
           </div>
           <div class="col-12 col-md-3">   
             <div class="card-body">
-              <h4 class="card-title">REVIEW
+              <h4 class="card-title">総合評価
                 <div id="star-rate<%= review.id %>"></div>    
                 <script>
                   $('#star-rate<%= review.id %>').raty({
@@ -93,10 +102,9 @@
           </div>
         </div>
       </div>
-      <div class="card-footer text-white bg-secondary">
+      <div class="card-footer text-white bg-secondary pb-2">
         <h6>タグ<br><%= review.tags.map(&:name).join(', ') %></h6>
       </div>
     <% end %>
   </div>
 </div>
-

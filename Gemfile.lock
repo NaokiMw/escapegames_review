@@ -39,6 +39,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_storage_validations (0.9.8)
+      activejob (>= 5.2.0)
+      activemodel (>= 5.2.0)
+      activestorage (>= 5.2.0)
+      activesupport (>= 5.2.0)
     activejob (6.1.6)
       activesupport (= 6.1.6)
       globalid (>= 0.3.6)
@@ -122,6 +127,7 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (2.0.3)
     ffi (1.15.5)
+    geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -362,6 +368,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_storage_validations
   aws-sdk-s3
   bootsnap (>= 1.4.4)
   byebug
@@ -369,6 +376,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
+  geocoder
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
