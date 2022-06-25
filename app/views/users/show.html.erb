@@ -26,7 +26,7 @@
     </div>
     <div class="col pt-2">
       <% if @user.profile %>
-        <h4><%= @user.profile %></h4>
+        <h4><%= safe_join(@user.profile.split("\n"),tag(:br)) %></h4>
       <% else %>
         <h4>プロフィールを<br>作成してみましょう!</h4>
       <% end %>
