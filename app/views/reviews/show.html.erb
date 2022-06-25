@@ -7,18 +7,29 @@
 <div class="container card-deck pt-3" >
   <% @review.each do |review| %>
     <div class="card-header text-white bg-secondary mt-2">
-      <div class="row">
-        <div class="col-12">
-          <h5><%= l review.created_at, format: :default %> <%= review.title %></h5>
-        </div>
-        <div class="col-md-12">
-          <div class="d-flex justify-content-between">
-            <h6>開催場所 <%= review.address %></h6>
-            <h6 class="float-right">脱出に<%= review.result ? '成功' : '失敗' %>した<%= review.user.username %>さんのレビュー</h6>
+      <div class="card card-header text-white bg-secondary mt-2">
+        <div class="row">
+          <div class="col-9">
+            <h6><%= l review.created_at, format: :default %>投稿</h6>
+          </div>
+          <div class="col-3 text-end">
+            <% if review.result == true %>
+              <h6 class="badge bg-danger">脱出<%= review.result ? '成功' : '失敗' %></h6>
+            <% else %>
+              <h6 class="badge bg-primary">脱出<%= review.result ? '成功' : '失敗' %></h6>
+            <% end %>
+          </div>
+          <div class="col-12">
+            <h5><%= review.title %></h5>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12 col-md-9">
+            <h6>開催場所<br><%= review.address %></h6>
+          </div>
+            <h6 class="col-12 col-md-3">投稿者 <%= review.user.username %></h6>
+        </div>
       </div>
-    </div>   
     <div class="card text-white bg-secondary">
       <div class="row g-0">
         <div class="col-12 col-md-4">
@@ -57,7 +68,7 @@
             <h4>¥<%= review.price %></h4>
             <h3>開始時間</h3>
             <h4><%= l review.start_time, format: :short %><h3>
-            <h3>友人・知り合い</h3>
+            <h3>友人・家族</h3>
             <h4><%= review.friends %>人<h4>
           </p> 
         </div>
