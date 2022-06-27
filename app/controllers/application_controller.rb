@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def set_search
     @q = Review.ransack(params[:q])
-    @search_reviews = @q.result(distinct: true)
+    @search_reviews = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   protected

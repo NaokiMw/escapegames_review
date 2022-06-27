@@ -71,6 +71,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem "geocoder"
 gem 'active_storage_validations'
+gem 'kaminari'
 group :production do
   gem 'pg'
 end
