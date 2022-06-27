@@ -1,9 +1,16 @@
 <div class="container border border-2 border-secondary border-opacity-25 bg-white rounded mx-md-5">
   <div class="row">
     <h4 class="col-6 col-md-3 pt-2">
-      <% @favorite_reviews.each do |review| %>
-        <%=link_to "興味ありレビュー", review_path(review.id), class: "btn btn-outline-success rounded-pill" %>
-      <% end %>
+      <div class="dropdown">
+        <button type="button" class="btn btn-outline-success rounded-pill dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          興味あり
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <% @favorite_reviews.each do |review| %>
+            <li><%=link_to review.title, review_path(review.id), class: "dropdown-item" %></li>
+          <% end %>
+        </ul>
+      </div>
     </h4>
     <div class="col-6 col-md-3 pt-2">
       <%= link_to "プロフィール編集", edit_user_registration_path(@user.id),class: "btn btn-outline-success rounded-pill" %>
@@ -67,6 +74,7 @@
     <% @follow_reviews.each do |follow_reviews| %>
       <div class="col-6 col-md-2 pt-2">
         <%= l follow_reviews.created_at, format: :default %> 投稿<br>
+        投稿者 <%= follow_reviews.user.username %> <br>
         <%=link_to follow_reviews.title, review_path(follow_reviews.id), class: "btn btn-outline-success rounded" %>
       </div>
     <% end %>
