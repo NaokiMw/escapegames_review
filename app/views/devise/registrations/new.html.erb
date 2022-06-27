@@ -37,7 +37,8 @@
   <% end %>
   <div class="row mt-3 mb-5">
     <div class="col-md-6 offset-md-3">
+      <%= button_to 'ゲストログイン', users_guest_sign_in_path, class: 'btn btn-outline-warning col-md-6 offset-md-3', method: :post %>
       <%= render "devise/shared/links" %>
     </div>
-  </div>  
+  </div>
 </div>
