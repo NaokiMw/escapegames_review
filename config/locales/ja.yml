@@ -152,3 +152,10 @@ ja:
       default: "%Y/%m/%d"
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%H:%M"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
