@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row main bg-warning  py-5">
+    <div class="col-md-8 offset-md-2">
+      <p class="display-2 text-center text-white">謎レビュへようこそ</p>
+    </div>
+    <div class="col-md-8 offset-md-2">
+      <p class="lead text-center text-white">ネタバレの心配のないレビューサイト</p>
+    </div>
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-body text-black">
+          <p class="card-title text-center">＃謎レビュとは</p>
+          <p class="card-text text-center">
+            謎レビュは脱出ゲームのネタバレ防止に配慮したレビューSNSです。<br>
+            どんな脱出ゲームも人生で１回しかネタバレなしに楽しむことができません。<br>
+            新鮮な気持ちで楽しめる最初の１回を大事にしたいのは皆おなじ。<br>
+            <br>
+            でも、時間もお金も有限です。<br>自分に合った脱出ゲームなのか知りたい。<br>
+            謎レビュでは安心してレビューを確認することができます。<br>
+            <br>
+            お試しでレビューを投稿してみたい方は、<br>
+            ゲストログインでレビューをご投稿下さい。
+          </p>
+          <% if user_signed_in? %>
+            <div class="card-footer text-center">
+            <%= link_to 'レビューページへ', reviews_path, class: 'btn btn-outline-danger' %>
+            </div>
+          <% else %>
+            <div class="card-footer text-center">
+              <%= button_to 'ゲストログイン', users_guest_sign_in_path, class: 'btn btn-outline-secondary', method: :post %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= render "homes/about" %>
+  </div>
+</div>

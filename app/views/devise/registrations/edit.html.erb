@@ -1,0 +1,50 @@
+<div class="container border border-5 border-warning rounded bg-white mx-md-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <%= link_to "Back", :back, class: "btn btn-light" %>
+    </div>
+  </div>
+  <div class="row"> 
+    <div class="col-md-6 offset-md-3">
+      <h4 class="text-decoration-underline">プロフィール編集</h4>
+    </div>
+  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <form class="form-horizontal">
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <%= f.label :username, class: "form-label" %><br />
+          <%= f.text_field :username, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <%= f.label :email, class: "form-label col-xs-2" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <%= f.label :profile, class: "form-label col-xs-2" %><br />
+          <%= f.text_area :profile, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+      <div class="row actions">
+        <div class="col-md-6 offset-md-3 mt-2">
+          <%= f.submit "編集", class: "btn btn-outline-warning col-md-6 offset-md-3" %>
+        </div>
+      </div>
+    </form>
+  <% end %>
+  <div class="row">
+    <div class="col-md-6 offset-md-3 actions mt-2">
+      <p><%= button_to "アカウントの削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "col-md-6 offset-md-3 btn btn-outline-danger mt-2"%></p>
+    </div>
+  </div>
+</div>
+
+  

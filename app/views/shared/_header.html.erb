@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg bg-light headerfooter">
+  <div class="container-fluid">
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="ナビゲーションの切替">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand text-white" href="/">謎レビュ</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="/reviews">レビュー</a>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/mypage">マイページ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/diaries">日記</a>
+          </li>
+        <% end %>
+        <% if current_page?(reviews_path) %>
+          <li class="nav-item">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+              <%= search_form_for @q, url: reviews_path, method: :get, class:"search-form" do |f| %>
+                <%= f.search_field :address_or_title_or_review_2_or_review_3_or_review_4_or_review_5_or_tags_name_cont, placeholder: 'キーワード・タグ検索', class:'input-box' %>
+                <%= f.button type: "submit", class: 'btn btn-outline-light me-2' do%>
+                  検索
+                <% end %>
+              <% end %>
+            </form>
+          </li>
+        <% end %>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-outline-light me-2 text-end' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "ログイン", user_session_path, class: 'btn btn-outline-light me-2' %>
+            <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-warning text-end' %>
+          </li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

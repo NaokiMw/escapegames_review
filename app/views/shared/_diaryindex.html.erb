@@ -1,0 +1,22 @@
+<div class="list-group list-group-flush border-bottom scrollarea">
+  <%= link_to diary_path(diary.id), class: "list-group-item list-group-item-action py-3 lh-sm" do %>
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <strong class="mb-1"><%= diary.title %></strong>
+      
+      <small class="text-muted"><%= l diary.created_at %></small>
+    </div>
+    <div class="col-12 mb-1 small">
+      <%= diary.user.username %>さん
+      <% if diary.status == "draft" %>
+        非公開
+      <% else %>
+        公開
+      <% end %>
+    </div>
+    <div class="col-12 mb-1 small">
+      <%= l diary.play_day, format: :short %>
+      <%= l diary.start_time, format: :short %>に開始したゲーム
+      脱出<%= diary.result ? '成功' : '失敗' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,144 @@
+<%= form_with model: @review do |f| %>
+  <div class="container border border-5 border-warning rounded mx-md-5 bg-white">
+    <div class="row"> 
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-decoration-underline mt-3">レビュー新規作成</h2>
+      </div>
+    </div>
+    <form class="form-horizontal border">
+      <div class="row"> 
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <%= f.label :title, "タイトル", class: "form-label" %>
+          <%= f.text_field :title, class: "form-control", placeholder: "ゲーム・イベントのタイトルを入力して下さい" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field  form-group mt-2">
+          <%= f.label :address, "場所", class: "form-label text-end" %>
+          <%= f.text_field :address, class: "form-control ", id:"pac-input", placeholder: "プレイした場所を入力して下さい", onChange:"codeAddress()" %>
+        </div>
+        <div class="col-md-6 offset-md-3 mt-2">
+          <div id="display"></div>
+          <div id="map" class=" mt-2"></div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <%= f.label :tag, 'タグ（合計50字以内）', class: "form-label" %>
+          <%= f.text_field :tag, placeholder: "スペースで区切ることで複数指定できます", value: @review.tags.pluck(:name), class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group offset-md-3 col-md-2 mt-2">
+          <%= f.label :play_day, "体験日", class: "form-label" %>
+          <%= f.date_field :play_day, class: "form-control" %>
+        </div>
+        <div class="form-group col-md-2 mt-2">
+          <%= f.label :start_time, "開始時間", class: "form-label" %>
+          <%= f.time_field :start_time, class: "form-control" %>
+        </div>
+        <div class="form-group  col-md-2 mt-2">
+          <%= f.label :price, "料金", class: "form-label" %>
+          <div class="input-group">
+            <span class="input-group-text">¥</span>
+            <%= f.number_field :price, in: 0.0..500000.0, value: 2200, step: 100.0, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group offset-md-3 col-md-2 mt-2">
+          <%= f.label :players, "プレイ人数", class: "form-label" %>
+          <div class="input-group">
+            <%= f.number_field :players, in: 1.0..200.0, value: 1, class: "form-control" %>
+            <span class="input-group-text">人</span>
+          </div>
+        </div>
+          <div class="form-group col-md-2 mt-2">
+            <%= f.label :friends, "友人・家族", class: "form-label" %>
+            <div class="input-group">
+              <%= f.number_field :friends, in: 0.0..200.0, value: 0, class: "form-control" %>
+              <span class="input-group-text">人</span>
+            </div>
+          </div>
+          <div class="form-group col-md-2 mt-2">
+            <%= f.label :timelimit, "制限時間", class: "form-label" %>
+            <div class="input-group">
+              <%= f.number_field :timelimit, in: 0.0..4800.0, step: 15.0, value: 60, class: "form-control" %>
+              <span class="input-group-text">分</span>
+            </div>
+          </div>
+        
+      </div>
+
+      <div class="row">
+        <div class="form-group offset-md-3 col-md-6 mt-2">
+          <%= f.label :image ,"記念写真", class: "form-label" %>
+          <%= f.file_field :image, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group offset-md-3 col-md-6 mt-2" id="star">
+          <%= f.label :review_1, 'Q1. 総合評価は？', class: "form-label" %>
+          <%= f.hidden_field :review_1, class: "form-control", id: :review_1 %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 form-group offset-md-3 mt-2">
+            <%= f.label :review_2, "Q2. 脱出ゲームのジャンルは？", class: "form-label" %>
+            <%= f.select :review_2, ["ルーム", "卓上", "街歩き", "本・グッズ", "宿泊", "イベント"], class: "form-select" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 form-group offset-md-3 mt-2">
+          <%= f.label :review_3, "Q3. ゲームの内容は？", class: "form-label" %>
+          <%= f.select :review_3, ["学生向け", "ファミリー向け", "大人向け", "マニア向け", "カップル向け"], class: "form-select" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group offset-md-3 mt-2">
+          <%= f.label :review_4, "Q4. 満足度は？", class: "form-label" %>
+          <%= f.select :review_4, ["ひくい", "ふつう", "たかい", "すごくたかい", "最高"], class: "form-select" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group offset-md-3 mt-2">
+          <%= f.label :review_5, "Q5. むずかしさは？", class: "form-label" %>
+          <%= f.select :review_5, ["かんたん", "ふつう", "むずかしい", "激ムズ"], class: "form-select" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 offset-md-3 field form-group mt-2">
+          <div>Q6. 脱出は？</div>
+          <%= f.label :result, "成功", value: :true, class: "form-check-label" %>
+          <%= f.radio_button :result, true, class: "form-check-input", checked: true %>
+          <%= f.label :result, "失敗", value: :false, class: "form-check-label" %>
+          <%= f.radio_button :result, false, class: "form-check-input" %>
+        </div>
+      </div>
+
+      <div class="row actions mt-2 mb-2">
+        <div class="col-md-6 offset-md-3">
+          <%= f.submit "登録", class: "btn btn-outline-warning" %>
+        </div>
+      </div>
+    </form>
+  </div>
+<% end %>
+
+<!-- 評価javascript -->
+<script>
+  $('#star').raty({
+    size     : 15,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'review[review_1]',
+    half: true,
+  });
+</script>
