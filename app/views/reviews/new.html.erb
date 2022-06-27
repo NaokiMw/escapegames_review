@@ -9,7 +9,7 @@
       <div class="row"> 
         <div class="col-md-6 offset-md-3 field form-group mt-2">
           <%= f.label :title, "タイトル", class: "form-label" %>
-          <%= f.text_field :title, class: "form-control", placeholder: "プレイしたタイトルを入力して下さい" %>
+          <%= f.text_field :title, class: "form-control", placeholder: "ゲーム・イベントのタイトルを入力して下さい" %>
         </div>
       </div>
       <div class="row">
@@ -25,14 +25,14 @@
       
       <div class="row">
         <div class="col-md-6 offset-md-3 field form-group mt-2">
-          <%= f.label :tag, 'タグ', class: "form-label" %>
+          <%= f.label :tag, 'タグ（合計50字以内）', class: "form-label" %>
           <%= f.text_field :tag, placeholder: "スペースで区切ることで複数指定できます", value: @review.tags.pluck(:name), class: "form-control" %>
         </div>
       </div>
 
       <div class="row">
         <div class="form-group offset-md-3 col-md-2 mt-2">
-          <%= f.label :play_day, "遊んだ日", class: "form-label" %>
+          <%= f.label :play_day, "体験日", class: "form-label" %>
           <%= f.date_field :play_day, class: "form-control" %>
         </div>
         <div class="form-group col-md-2 mt-2">
@@ -43,7 +43,7 @@
           <%= f.label :price, "料金", class: "form-label" %>
           <div class="input-group">
             <span class="input-group-text">¥</span>
-            <%= f.number_field :price, in: 0.0..500000.0, value:2200, step: 100.0, class: "form-control" %>
+            <%= f.number_field :price, in: 0.0..500000.0, value: 2200, step: 100.0, class: "form-control" %>
           </div>
         </div>
       </div>
@@ -51,21 +51,21 @@
         <div class="form-group offset-md-3 col-md-2 mt-2">
           <%= f.label :players, "プレイ人数", class: "form-label" %>
           <div class="input-group">
-            <%= f.number_field :players, in: 1.0..200.0, value:1, class: "form-control" %>
+            <%= f.number_field :players, in: 1.0..200.0, value: 1, class: "form-control" %>
             <span class="input-group-text">人</span>
           </div>
         </div>
           <div class="form-group col-md-2 mt-2">
-            <%= f.label :friends, "友達・知り合い", class: "form-label" %>
+            <%= f.label :friends, "友人・家族", class: "form-label" %>
             <div class="input-group">
-              <%= f.number_field :friends, in: 0.0..200.0, value:0, class: "form-control" %>
+              <%= f.number_field :friends, in: 0.0..200.0, value: 0, class: "form-control" %>
               <span class="input-group-text">人</span>
             </div>
           </div>
           <div class="form-group col-md-2 mt-2">
             <%= f.label :timelimit, "制限時間", class: "form-label" %>
             <div class="input-group">
-              <%= f.number_field :timelimit, in: 0.0..4800.0, step: 5.0, value:90, class: "form-control" %>
+              <%= f.number_field :timelimit, in: 0.0..4800.0, step: 15.0, value: 60, class: "form-control" %>
               <span class="input-group-text">分</span>
             </div>
           </div>
@@ -88,14 +88,14 @@
 
       <div class="row">
         <div class="col-md-6 form-group offset-md-3 mt-2">
-            <%= f.label :review_2, "Q2. 脱出ゲームのタイプは？", class: "form-label" %>
-            <%= f.select :review_2, ["ルーム", "卓上", "街歩き", "本・グッズ", "宿泊"], class: "form-select" %>
+            <%= f.label :review_2, "Q2. 脱出ゲームのジャンルは？", class: "form-label" %>
+            <%= f.select :review_2, ["ルーム", "卓上", "街歩き", "本・グッズ", "宿泊", "イベント"], class: "form-select" %>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 form-group offset-md-3 mt-2">
-          <%= f.label :review_3, "Q3. ストーリーは？", class: "form-label" %>
+          <%= f.label :review_3, "Q3. ゲームの内容は？", class: "form-label" %>
           <%= f.select :review_3, ["学生向け", "ファミリー向け", "大人向け", "マニア向け", "カップル向け"], class: "form-select" %>
         </div>
       </div>

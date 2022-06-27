@@ -1,80 +1,73 @@
-<div class="container border border-5 border-warning bg-white rounded mx-md-5">
+<div class="container border border-2 border-secondary border-opacity-25 bg-white rounded mx-md-5">
   <div class="row">
-    <button type="button" class="btn btn-warning text-white" data-bs-toggle="collapse" data-bs-target="#collapsemypagelist" aria-expanded="false" aria-controls="collapsemypagelist">
-      サブメニュー
-    </button>
-    <div class="collapse" id="collapsemypagelist">
-      <ul class="list-group list-group-horizontal-lg justify-content-center mt-2">
-        <li class="list-group-item border-0 ">
-          <% @favorite_reviews.each do |review| %>
-            <%=link_to "いいねしたレビュー", review_path(review.id), class: "btn btn-warning rounded-pill text-white" %>
-          <% end %>  
-        </li>
-        <li class="list-group-item border-0">
-          <%= link_to "プロフィール編集", edit_user_registration_path(@user.id),class: "btn btn-warning rounded-pill text-white" %>
-        </li>
-        <li class="list-group-item border-0">
-          <%= link_to "フォロー中" + @user.active_relationships.count.to_s, follows_user_path(@user.id),class: "btn btn-warning rounded-pill text-white" %>
-        </li>
-        <li class="list-group-item border-0">
-          <%= link_to "フォロワー" + @user.passive_relationships.count.to_s, followers_user_path(@user.id), class: "btn btn-warning rounded-pill text-white" %>
-        </li>
-      </ul>
+    <h4 class="col-6 col-md-3 pt-2">
+      <% @favorite_reviews.each do |review| %>
+        <%=link_to "興味ありレビュー", review_path(review.id), class: "btn btn-outline-success rounded-pill" %>
+      <% end %>
+    </h4>
+    <div class="col-6 col-md-3 pt-2">
+      <%= link_to "プロフィール編集", edit_user_registration_path(@user.id),class: "btn btn-outline-success rounded-pill" %>
+    </div>
+    <div class="col-6 col-md-3 pt-2">
+      <%= link_to "フォロー中" + @user.active_relationships.count.to_s, follows_user_path(@user.id),class: "btn btn-outline-success rounded-pill" %>
+    </div>
+    <div class="col-6 col-md-3 pt-2">
+      <%= link_to "フォロワー" + @user.passive_relationships.count.to_s, followers_user_path(@user.id), class: "btn btn-outline-success rounded-pill" %>
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <h1><%= @user.username %> さんのマイページ</h1>
+    <div class="col pt-2">
+      <h2><%= @user.username %>のマイページ</h2>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 ">
-      <strong class="h2 text-decoration-underline ">プロフィール</strong>
+  <div class="row mt-2 border-top border-secondary border-opacity-25">
+    <div class="col-12 pt-2">
+      <strong class="h2 text-decoration-underline">プロフィール</strong>
     </div>
-    <div class="col">
+    <div class="col pt-2">
       <% if @user.profile %>
-        <h4><%= @user.profile %></h4>
+        <h4><%= safe_join(@user.profile.split("\n"),tag(:br)) %></h4>
       <% else %>
-        <h4>プロフィールを作成してみましょう!</h4>
+        <h4>プロフィールを<br>作成してみましょう!</h4>
       <% end %>
     </div>
   </div>
-  <div class="row mt-2">
-    <div class="col-12">
-      <strong class="text-decoration-underline h3">あなたのレビュー(最新<%= @user.reviews.count %>件)</strong>
-      <% @reviews.each do |review| %>
-        <div class="col-12 mt-1">
-          <%= l review.created_at, format: :default %>
-        </div>
-        <div class="col-12">
-          <p><%=link_to review.title, review_path(review.id), class: "btn btn-secondary rounded text-white" %></p>
-        </div>
-      <% end %>
+  <div class="row mt-2 border-top border-secondary border-opacity-25">
+    <div class="col-12 pt-2">
+      <strong class=" h3">あなたのレビュー （最新<%= @user.reviews.count %>件）</strong>
     </div>
   </div>
-  <div class"row">
-    <div class="col-12">
-      <strong class="text-decoration-underline h3">あなたの日記(最新<%= @user.diaries.count %>件)</strong>
-      <% @diary.each do |diary| %>
-        <div class="col-12 mt-1">
-          <%= l diary.created_at, format: :default %>
-        </div>
-        <div class="col-12">
-          <p><%=link_to diary.title, diary_path(diary.id), class: "btn btn-secondary rounded text-white" %></p>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <strong class="text-decoration-underline h3">フォロー中のレビュー(最新<%= @follow_reviews.count %>件)</strong>
-    </div>
-    <% @follow_reviews.each do |follow_reviews| %>
-      <div class="col-12 mt-1">
-        <%= l follow_reviews.created_at, format: :default %>
+  <div class="row pt-2 justify-content-start">
+    <% @reviews.each do |review| %>
+      <div class="col-6 col-md-2 pt-2">
+        <%= l review.created_at, format: :default %> 投稿<br>
+        <%=link_to review.title, review_path(review.id), class: "btn btn-outline-success rounded" %>
       </div>
-      <div class="col-12">
-        <p><%=link_to follow_reviews.title, review_path(follow_reviews.id), class: "btn btn-secondary rounded text-white" %></p>
+    <% end %>
+  </div>
+  <div class="row mt-2 border-top border-secondary border-opacity-25">
+    <div class="col-12 pt-2">
+      <strong class="h3">あなたの日記 （最新<%= @user.diaries.count %>件）</strong>
+    </div>
+  </div>
+  <div class="row pt-2 justify-content-start">
+    <% @diary.each do |diary| %>
+      <div class="col-6 col-md-2 pt-2">
+        <%= l diary.created_at, format: :default %> 投稿<br>
+        <%=link_to diary.title, diary_path(diary.id), class: "btn btn-outline-success rounded" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row mt-2 border-top border-secondary border-opacity-25">
+    <div class="col-12 pt-2">
+      <strong class="h3">フォロー中のレビュー （最新<%= @follow_reviews.count %>件）</strong>
+    </div>
+  </div>
+  <div class="row mt-2 mb-2 justify-content-start">
+    <% @follow_reviews.each do |follow_reviews| %>
+      <div class="col-6 col-md-2 pt-2">
+        <%= l follow_reviews.created_at, format: :default %> 投稿<br>
+        <%=link_to follow_reviews.title, review_path(follow_reviews.id), class: "btn btn-outline-success rounded" %>
       </div>
     <% end %>
   </div>
